@@ -36,5 +36,14 @@ module WalkingLot
 
     config.time_zone = 'Tokyo'
     config.active_record.default_time_zone = :local
+
+    config.generators do |g|
+      g.helper false
+      g.test_framework :respec,
+        controller_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end
