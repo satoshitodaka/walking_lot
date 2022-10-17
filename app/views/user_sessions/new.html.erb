@@ -1,6 +1,6 @@
 <div class='container mx-auto'>
   <div class='mx-auto max-w-xs mb-5'>
-    <%= form_with url: login_path, id:'login-form' do |f| %>
+    <%= form_with url: login_path, id: 'login-form' do |f| %>
         <div class="form-control w-full mb-5">
         <%= f.label :email, User.human_attribute_name(:email), class: 'label-text' %>
         <%= f.text_field :email, class: 'input input-bordered input-primary w-full' %>
