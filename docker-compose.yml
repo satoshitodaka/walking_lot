@@ -12,8 +12,11 @@ services:
       - 3000:3000
     depends_on:
       - db
+      - chrome
     stdin_open: true
     tty: true
+    environment:
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
   db:
     image: mysql:5.7.33
     environment:
@@ -22,7 +25,10 @@ services:
       - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
-
+  chrome:
+    image: selenium/standalone-chrome-debug:latest
+    ports:
+      - 4444:4444
 volumes:
   bundle:
   mysql_data:
