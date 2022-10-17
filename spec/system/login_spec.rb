@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ログイン", type: :system do
+RSpec.describe 'ログイン', type: :system do
   let(:user) { create(:user) }
   describe 'ログイン機能' do
     let(:user) { create(:user) }
@@ -21,7 +21,7 @@ RSpec.describe "ログイン", type: :system do
         visit '/login'
         within '#login-form' do
           fill_in 'メールアドレス', with: user.email
-          fill_in 'パスワード', with: 'password' 
+          fill_in 'パスワード', with: 'password'
           click_on 'ログイン'
         end
         expect(page).to have_content 'ログインしました'
