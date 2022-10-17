@@ -1,0 +1,18 @@
+<div>
+  <div class='container'>
+    <div class='mx-auto max-w-xs mb-5'>
+      <%= form_with url: login_path do |f| %>
+          <div class="form-control w-full mb-5">
+          <%= f.label :email, User.human_attribute_name(:email), class: 'label-text' %>
+          <%= f.text_field :email, class: 'input input-bordered input-primary w-full' %>
+        </div>
+        <div class="form-control w-full mb-5">
+          <%= f.label :password, User.human_attribute_name(:password), class: 'label-text' %>
+          <%= f.password_field :password, class: 'input input-bordered input-primary w-full' %>
+        </div>
+        
+        <%= f.submit 'ログイン', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>
