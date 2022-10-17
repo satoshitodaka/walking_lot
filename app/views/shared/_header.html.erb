@@ -5,26 +5,22 @@
   <div class="flex-none">
     <div class="flex-shrink-0">
       <%= link_to `#`, class: 'btn btn-primary btn-sm' do %>
-        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <svg class="ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
         </svg>
         <span>くじを引く</span>
       <% end %>
     </div>
     <% if logged_in? %>
-      <div class="dropdown dropdown-end">
+      <div class="dropdown dropdown-end" id='header-avatar-dropdown'>
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <img src="https://placeimg.com/80/80/people">
           </div>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-          <li>
-            <a class="justify-between">
-              アカウント
-            </a>
-          </li>
-          <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }%></li>
+          <li><%= link_to 'アカウント', '#' %></li>
+          <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %></li>
         </ul>
       </div>
     <% end %>

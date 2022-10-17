@@ -8,7 +8,7 @@ RSpec.describe "ログイン", type: :system do
         visit '/login'
         fill_in 'メールアドレス', with: 'wrong@sample.com'
         fill_in 'パスワード', with: 'hogehoge'
-        click_on 'ログイン'
+        click_on 'ログインする'
         expect(page).to have_content 'ログインに失敗しました'
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe "ログイン", type: :system do
         visit '/login'
         fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード', with: 'password' 
-        click_on 'ログイン'
+        click_on 'ログインする'
         expect(page).to have_content 'ログインしました'
       end
     end
