@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2 #@v3で通るか確認、またruby-setupも試す
       - uses: actions/setup-node@v3
         with:
-          node-version: '15.x'
+          node-version: '14.x'
       - name: Install Yarn
         run: npm install -g yarn
       - name: Install yarn modules
@@ -45,9 +45,6 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
-      - name: Install dependencies
-        run: yarn
-
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
