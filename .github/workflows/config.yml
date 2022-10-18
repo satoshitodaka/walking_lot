@@ -18,13 +18,12 @@ jobs:
       RAILS_ENV: test
     steps:
       - uses: actions/checkout@v2 #@v3で通るか確認、またruby-setupも試す
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14.x'
-      - name: Install Yarn
-        run: npm install -g yarn
-      - name: Install yarn modules
-        run: yarn install
+      - name: Setup node and yarn
+        run: |
+          curl -Ss https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -; \
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+          curl -sL https://deb.nodesource.com/setup_16.x | bash -; \
+          apt-get install -y --no-install-recommends nodejs yarn
       - name: Install chrome
         run: |
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -45,6 +44,8 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
+      - name: yarn install
+        run: yarn install
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
