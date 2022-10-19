@@ -1,0 +1,11 @@
+<%= form_with model: lot do |f| %>
+  <%= f.label :start_point_name %>
+  <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full' %>
+  <%= f.label :start_point_address %>
+  <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full' %>
+  <%= f.label :start_point_latitude %>
+  <%= f.text_field :start_point_latitude, class: 'input input-bordered input-primary w-full' %>
+  <%= f.label :start_point_longitude %>
+  <%= f.text_field :start_point_longitude, class: 'input input-bordered input-primary w-full' %>
+  <%= f.submit class: 'btn btn-primary'%>
+<% end %>
