@@ -28,7 +28,7 @@ class Lot < ApplicationRecord
   include IdGenerator
   belongs_to :user, optional: true
   validates :user, presence: true, if: :user_id?
-  
+
   validates :start_point_latitude, presence: true
   validates :start_point_longitude, presence: true
 
@@ -37,27 +37,26 @@ class Lot < ApplicationRecord
   before_create :set_destination
 
   private
+    def get_neaby_locations
+      google_map_api_key = Rails.application.credentials.google_map_api_key
+      start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
+      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&language=ja&key=#{ google_map_api_key }"
+      uri = URI.parse(url)
+      response = Net::HTTP.get(uri)
+      result = JSON.parse(response)
+    end
 
-  def get_neaby_locations
-    google_map_api_key = Rails.application.credentials.google_map_api_key
-    start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&language=ja&key=#{ google_map_api_key }"
-    uri = URI.parse(url)
-    response = Net::HTTP.get(uri)
-    result = JSON.parse(response)
-  end
+    def set_neaby_locations
+      self.neaby_locations = get_neaby_locations
+    end
 
-  def set_neaby_locations
-    self.neaby_locations = get_neaby_locations
-  end
+    def set_destination
+      order_number = Random.rand(1 .. 18)
+      destination_infomations = self.neaby_locations['results'][order_number]
 
-  def set_destination
-    order_number = Random.rand(1 .. 18)
-    destination_infomations = self.neaby_locations["results"][order_number]
-
-    self.destination_name = destination_infomations["name"]
-    self.destination_address = destination_infomations["vicinity"]
-    self.destination_latitude = destination_infomations["geometry"]["location"]["lat"]
-    self.destination_longitude = destination_infomations["geometry"]["location"]["lng"]
-  end
+      self.destination_name = destination_infomations['name']
+      self.destination_address = destination_infomations['vicinity']
+      self.destination_latitude = destination_infomations['geometry']['location']['lat']
+      self.destination_longitude = destination_infomations['geometry']['location']['lng']
+    end
 end

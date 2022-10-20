@@ -22,13 +22,12 @@ class LotsController < ApplicationController
   end
 
   private
-
-  def lot_params
-    params.require(:lot).permit(
-      :start_point_name,
-      :start_point_address,
-      :start_point_latitude,
-      :start_point_longitude,
-    )
-  end
+    def lot_params
+      params.require(:lot).permit(
+        :start_point_name,
+        :start_point_address,
+        :start_point_latitude,
+        :start_point_longitude,
+      )
+    end
 end
