@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import SetStartPointController from "./set_start_point_controller"
 application.register("set-start-point", SetStartPointController)
+
+import ShowMapController from "./show_map_controller"
+application.register("show-map", ShowMapController)

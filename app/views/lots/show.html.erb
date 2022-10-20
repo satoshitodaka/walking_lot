@@ -1,3 +1,23 @@
-<div class="container">
-  <h2><%= @lot.destination_name %></h2>
+<div class="container mx-auto px-4 py-10 prose">
+  <h1>散歩くじの結果</h1>
+  <%# ここに写真を貼る %>
+  <div><%= @lot.destination_name %></div>
+  <h2>ここにアクションを載せる</h2>
+  <div
+    data-controller="show-map"
+    data-show-map-latitude-value="<%= @lot.destination_latitude %>"
+    data-show-map-longitude-value="<%= @lot.destination_longitude %>"
+    class="h-[400px]">
+  </div>
+  <%# リンク類を貼る %>
+  <hr>
+  <%# 寄り道スポットを載せる %>
+  <div class="flex-shrink-0">
+      <%= link_to new_lot_path, class: 'btn btn-primary btn-sm' do %>
+        <svg class="ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        <span>もう一度くじを引く</span>
+      <% end %>
+    </div>
 </div>
