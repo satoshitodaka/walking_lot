@@ -34,6 +34,7 @@ class Lot < ApplicationRecord
 
   before_create :get_neaby_locations
   before_create :set_neaby_locations
+  before_create :set_destination
 
   private
 
@@ -48,5 +49,15 @@ class Lot < ApplicationRecord
 
   def set_neaby_locations
     self.neaby_locations = get_neaby_locations
+  end
+
+  def set_destination
+    order_number = Random.rand(1 .. 18)
+    destination_infomations = self.neaby_locations["results"][order_number]
+
+    self.destination_name = destination_infomations["name"]
+    self.destination_address = destination_infomations["vicinity"]
+    self.destination_latitude = destination_infomations["geometry"]["location"]["lat"]
+    self.destination_longitude = destination_infomations["geometry"]["location"]["lng"]
   end
 end
