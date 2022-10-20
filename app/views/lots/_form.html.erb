@@ -1,4 +1,4 @@
-<%= form_with model: lot, data: {controller: 'set-start-point' } do |f| %>
+<%= form_with model: lot, data: { controller: 'set-start-point' } do |f| %>
   <%= f.label :start_point_name %>
   <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full' %>
   <%= f.label :start_point_address %>
@@ -7,8 +7,8 @@
   <%= f.text_field :start_point_latitude, class: 'input input-bordered input-primary w-full', readonly: true, data: { set_start_point_target: 'latitude' } %>
   <%= f.label :start_point_longitude %>
   <%= f.text_field :start_point_longitude, class: 'input input-bordered input-primary w-full', readonly: true, data: { set_start_point_target: 'longitude' } %>
-  
+
   <p>地図をクリックしてマーカーを立ててください</p>
   <div data-set-start-point-target='map' class='h-[500px] mb-5'></div>
-  <%= f.submit class: 'btn btn-primary'%>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
