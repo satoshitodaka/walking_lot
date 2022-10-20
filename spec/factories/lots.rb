@@ -26,14 +26,14 @@
 #
 FactoryBot.define do
   factory :lot do
-    start_point_name { "MyString" }
-    start_point_address { "MyString" }
-    start_point_latitude { 1.5 }
-    start_point_longitude { 1.5 }
-    destination_name { "MyString" }
-    destination_address { "MyString" }
-    destination_latitude { 1.5 }
-    destination_longitude { 1.5 }
+    start_point_name { "West Station" }
+    start_point_address { Faker::Address.full_address }
+    start_point_latitude { Random.rand(35.6..35.7) }
+    start_point_longitude { Random.rand(139.70..139.78) }
+    destination_name { "Central Park" }
+    destination_address { Faker::Address.full_address }
+    destination_latitude { Random.rand(35.6..35.7) }
+    destination_longitude { Random.rand(139.70..139.78) }
     neaby_locations { "" }
     user { nil }
   end

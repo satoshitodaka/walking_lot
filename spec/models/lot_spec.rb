@@ -27,5 +27,17 @@
 require 'rails_helper'
 
 RSpec.describe Lot, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    it 'スタート地点の緯度は必須であること' do
+      lot = build(:lot, start_point_latitude: nil )
+      lot.valid?
+      expect(lot.errors[:start_point_latitude]).to include('を入力してください')
+    end
+
+    it 'スタート地点の軽度は必須であること' do
+      lot = build(:lot, start_point_longitude: nil )
+      lot.valid?
+      expect(lot.errors[:start_point_longitude]).to include('を入力してください')
+    end
+  end
 end
