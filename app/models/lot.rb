@@ -43,7 +43,7 @@ class Lot < ApplicationRecord
       url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&language=ja&key=#{ google_map_api_key }"
       uri = URI.parse(url)
       response = Net::HTTP.get(uri)
-      result = JSON.parse(response)
+      JSON.parse(response)
     end
 
     def set_neaby_locations
