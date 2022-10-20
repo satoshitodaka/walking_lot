@@ -31,4 +31,22 @@ class Lot < ApplicationRecord
   
   validates :start_point_latitude, presence: true
   validates :start_point_longitude, presence: true
+
+  before_create :get_neaby_locations
+  before_create :set_neaby_locations
+
+  private
+
+  def get_neaby_locations
+    google_map_api_key = Rails.application.credentials.google_map_api_key
+    start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
+    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&language=ja&key=#{ google_map_api_key }"
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+  end
+
+  def set_neaby_locations
+    self.neaby_locations = get_neaby_locations
+  end
 end
