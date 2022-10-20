@@ -30,6 +30,12 @@ gem 'cssbundling-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+# 認証
+gem 'sorcery'
+
+# 国際化
+gem 'rails-i18n', '~> 7.0.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -62,6 +68,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'annotate'
   gem 'rubocop'
   gem 'rubocop-rails', require: false
   gem 'web-console'
@@ -75,5 +82,6 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'webdrivers'
 end

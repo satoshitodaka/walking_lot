@@ -33,5 +33,19 @@ module WalkingLot
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.helper false
+      g.test_framework :rspec,
+        controller_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        model_specs: true
+    end
   end
 end
