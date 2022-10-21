@@ -2,6 +2,7 @@
 puts 'Start inserting seed "lots"...'
 User.limit(3).each do |user|
   lot = user.lots.create(
+    location_type_id: Random.rand(0 .. 7),
     start_point_name: Faker::Address.city,
     start_point_address: Faker::Address.full_address,
     start_point_latitude: Random.rand(35.6..35.7),
@@ -18,6 +19,7 @@ end
 puts 'Start inserting seed "lots"...'
 5.times do
   lot = Lot.create(
+    location_type_id: Random.rand(0 .. 7),
     start_point_name: Faker::Address.city,
     start_point_address: Faker::Address.full_address,
     start_point_latitude: Random.rand(35.6..35.7),

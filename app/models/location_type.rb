@@ -12,13 +12,14 @@ class LocationType < ApplicationRecord
   validates :location_type, presence: true
   validates :name, presence: true
 
-  enum location_type: { cafe: 0,
-                        park: 1,
-                        tourist_attraction: 2,
-                        spa: 3,
-                        bakery: 4,
-                        book_store: 5,
-                        # store: 6,
-                        hindu_temple: 6
-  }, prefix: true
+  enum location_type: { anywhere: 0,
+                        cafe: 1,
+                        park: 2,
+                        tourist_attraction: 3,
+                        spa: 4,
+                        bakery: 5,
+                        book_store: 6,
+                        hindu_temple: 7
+  }
+ 
 end
