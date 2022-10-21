@@ -14,6 +14,7 @@
 #  start_point_name      :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  location_type_id      :bigint           not null
 #  user_id               :bigint
 #
 # Indexes
