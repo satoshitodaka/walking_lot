@@ -18,7 +18,7 @@ class LocationType < ApplicationRecord
                         spa: 3,
                         bakery: 4,
                         book_store: 5,
-                        store: 6,
-                        hindu_temple: 7
-  }
+                        # store: 6,
+                        hindu_temple: 6
+  }, prefix: true
 end

@@ -27,8 +27,8 @@
 class Lot < ApplicationRecord
   include IdGenerator
   belongs_to :user, optional: true
-  belongs_to :location_types
-  
+  belongs_to :location_type
+
   validates :user, presence: true, if: :user_id?
   validates :start_point_latitude, presence: true
   validates :start_point_longitude, presence: true
