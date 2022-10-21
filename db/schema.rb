@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_21_024553) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_21_064026) do
   create_table "location_types", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "location_type", null: false
+    t.integer "location_type", default: 0, null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["location_type"], name: "index_location_types_on_location_type", unique: true
   end
 
   create_table "lots", id: { type: :string, limit: 36 }, charset: "utf8mb4", force: :cascade do |t|
