@@ -18,7 +18,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :lots, dependent: :destroy
-
+  has_many :actions, dependent: :nullify
+  
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
