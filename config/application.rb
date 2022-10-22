@@ -45,6 +45,7 @@ module WalkingLot
         view_specs: false,
         helper_specs: false,
         routing_specs: false,
+        request_specs: false,
         model_specs: true
     end
   end
