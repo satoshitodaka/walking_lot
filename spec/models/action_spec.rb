@@ -3,9 +3,9 @@
 # Table name: actions
 #
 #  id         :bigint           not null, primary key
-#  approved   :string(255)      default("0"), not null
+#  approved   :string(255)      default(NULL), not null
 #  content    :text(65535)      not null
-#  released   :boolean          default(FALSE), not null
+#  released   :boolean          default("unreleased"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint

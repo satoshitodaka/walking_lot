@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_065626) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_071608) do
+  create_table "action_location_types", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "action_id", null: false
+    t.bigint "location_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_action_location_types_on_action_id"
+    t.index ["location_type_id"], name: "index_action_location_types_on_location_type_id"
+  end
+
   create_table "actions", charset: "utf8mb4", force: :cascade do |t|
     t.text "content", null: false
     t.boolean "released", default: false, null: false
@@ -57,6 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_065626) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "action_location_types", "actions"
+  add_foreign_key "action_location_types", "location_types"
   add_foreign_key "actions", "users"
   add_foreign_key "lots", "users"
 end
