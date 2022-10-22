@@ -21,6 +21,7 @@
 class Action < ApplicationRecord
   belongs_to :user
   has_many :action_location_types, dependent: :destroy
+  has_many :lot_action, dependent: :destroy
 
   validates :content, presence: true
   validates :released, presence: true
