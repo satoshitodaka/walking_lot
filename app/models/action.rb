@@ -20,6 +20,7 @@
 #
 class Action < ApplicationRecord
   belongs_to :user
+  has_many :action_location_types, dendent: :destroy
 
   validates :content, presence: true
   validates :released, presence: true
