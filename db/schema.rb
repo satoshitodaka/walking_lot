@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_071608) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_091329) do
   create_table "action_location_types", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "action_id", null: false
     t.bigint "location_type_id", null: false
@@ -36,6 +36,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_071608) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_type"], name: "index_location_types_on_location_type", unique: true
+  end
+
+  create_table "lot_actions", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "action_id", null: false
+    t.string "lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_lot_actions_on_action_id"
   end
 
   create_table "lots", id: { type: :string, limit: 36 }, charset: "utf8mb4", force: :cascade do |t|
@@ -69,5 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_071608) do
   add_foreign_key "action_location_types", "actions"
   add_foreign_key "action_location_types", "location_types"
   add_foreign_key "actions", "users"
+  add_foreign_key "lot_actions", "actions"
   add_foreign_key "lots", "users"
 end
