@@ -13,8 +13,8 @@
 #  index_location_types_on_location_type  (location_type) UNIQUE
 #
 class LocationType < ApplicationRecord
-  has_many :action_location_types, dendent: :destroy
-  
+  has_many :action_location_types, dependent: :destroy
+
   validates :location_type, presence: true, uniqueness: true
   validates :name, presence: true
 

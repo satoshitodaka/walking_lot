@@ -3,7 +3,7 @@
 # Table name: actions
 #
 #  id         :bigint           not null, primary key
-#  approved   :string(255)      default(NULL), not null
+#  approved   :boolean          default("unapproved"), not null
 #  content    :text(65535)      not null
 #  released   :boolean          default("unreleased"), not null
 #  created_at :datetime         not null
@@ -20,7 +20,7 @@
 #
 class Action < ApplicationRecord
   belongs_to :user
-  has_many :action_location_types, dendent: :destroy
+  has_many :action_location_types, dependent: :destroy
 
   validates :content, presence: true
   validates :released, presence: true

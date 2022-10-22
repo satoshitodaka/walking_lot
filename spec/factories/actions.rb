@@ -3,7 +3,7 @@
 # Table name: actions
 #
 #  id         :bigint           not null, primary key
-#  approved   :string(255)      default(NULL), not null
+#  approved   :boolean          default("unapproved"), not null
 #  content    :text(65535)      not null
 #  released   :boolean          default("unreleased"), not null
 #  created_at :datetime         not null

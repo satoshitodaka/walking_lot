@@ -3,7 +3,7 @@ class CreateActions < ActiveRecord::Migration[7.0]
     create_table :actions do |t|
       t.text :content,     null: false
       t.boolean :released, default: false, null: false
-      t.string :approved,  default: false, null: false
+      t.boolean :approved,  default: false, null: false
       t.references :user, foreign_key: true
 
       t.timestamps
