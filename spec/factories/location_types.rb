@@ -14,6 +14,6 @@
 #
 FactoryBot.define do
   factory :location_type do
-    name { "MyString" }
+    name { 'MyString' }
   end
 end

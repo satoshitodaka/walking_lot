@@ -25,5 +25,4 @@ class LocationType < ApplicationRecord
                         book_store: 6,
                         hindu_temple: 7
   }
- 
 end
