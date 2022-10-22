@@ -24,6 +24,7 @@ class LotsController < ApplicationController
   private
     def lot_params
       params.require(:lot).permit(
+        :location_type_id,
         :start_point_name,
         :start_point_address,
         :start_point_latitude,

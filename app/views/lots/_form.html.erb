@@ -1,4 +1,6 @@
 <%= form_with model: lot, data: { controller: 'set-start-point' } do |f| %>
+  <%= f.label :location_type %>
+  <%= f.collection_select :location_type_id, LocationType.all, :id, :name, class: 'select select-bordered w-full max-w-xss' %>
   <%= f.label :start_point_name %>
   <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full' %>
   <%= f.label :start_point_address %>

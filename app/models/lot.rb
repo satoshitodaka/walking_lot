@@ -42,7 +42,7 @@ class Lot < ApplicationRecord
     def get_neaby_locations
       google_map_api_key = Rails.application.credentials.google_map_api_key
       start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
-      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&language=ja&key=#{ google_map_api_key }"
+      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&type=#{ self.location_type.location_type }&language=ja&key=#{ google_map_api_key }"
       uri = URI.parse(url)
       response = Net::HTTP.get(uri)
       JSON.parse(response)
