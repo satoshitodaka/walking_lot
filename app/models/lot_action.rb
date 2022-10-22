@@ -18,4 +18,5 @@
 #
 class LotAction < ApplicationRecord
   belongs_to :action
+  belongs_to :lot
 end

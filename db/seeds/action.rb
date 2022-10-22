@@ -1,5 +1,5 @@
 puts 'Start inserting seed "actions"...'
-User.limit(5).each do |user|
+User.all.each do |user|
   action = user.actions.create(
     content: Faker::Lorem.sentence,
     released: false,
