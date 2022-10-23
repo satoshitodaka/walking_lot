@@ -20,4 +20,11 @@
 #
 class Activity < ApplicationRecord
   belongs_to :user
+
+  validates :content, presence: true
+  validates :released, presence: true
+  validates :approved, presence: true
+
+  enum released: { unreleased: false, released: true }
+  enum approved: { unapproved: false, approved: true }
 end
