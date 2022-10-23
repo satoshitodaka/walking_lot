@@ -15,5 +15,18 @@
 require 'rails_helper'
 
 RSpec.describe LocationType, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    it 'ロケーションタイプは必須であること' do
+      location_type = build(:location_type, location_type: nil)
+      location_type.valid?
+      expect(location_type.errors[:location_type]).to include('を入力してください')
+    end
+
+    it '名称は必須であること' do
+      location_type = build(:location_type, name: nil)
+      location_type.valid?
+      expect(location_type.errors[:name]).to include('を入力してください')
+    end
+  end
 end
+
