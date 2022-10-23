@@ -21,5 +21,20 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'バリデーション' do
+    let(:user) { create(:user) }
+
+    it 'コンテンツが必須であること' do
+      activity = build(:activity, content: nil, user: user)
+      activity.valid?
+      expect(activity.errors[:content]).to include('を入力してください')
+    end
+
+    it 'Userが必須であること' do
+      activity = build(:activity, user: nil)
+      activity.valid?
+      expect(activity.errors[:user]).to include('を入力してください')
+    end
+  end
 end
