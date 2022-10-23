@@ -30,6 +30,7 @@ class Lot < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :location_type
   has_one :lot_action, dependent: :destroy
+  has_one :action, through: :lot_action
 
   validates :user, presence: true, if: :user_id?
   validates :start_point_latitude, presence: true
@@ -38,6 +39,7 @@ class Lot < ApplicationRecord
   before_create :get_neaby_locations
   before_create :set_neaby_locations
   before_create :set_destination
+  after_create :create_lot_action
 
   private
     def get_neaby_locations
@@ -61,5 +63,12 @@ class Lot < ApplicationRecord
       self.destination_address = destination_infomations['vicinity']
       self.destination_latitude = destination_infomations['geometry']['location']['lat']
       self.destination_longitude = destination_infomations['geometry']['location']['lng']
+    end
+
+    def create_lot_action
+      LotAction.create(
+        lot_id: self.id,
+        action_id: Action.where(action_location_types: self.location_type_id).ids.sample
+      )
     end
 end
