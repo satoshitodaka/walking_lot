@@ -3,9 +3,9 @@
 # Table name: activities
 #
 #  id         :bigint           not null, primary key
-#  approved   :boolean          default(FALSE), not null
+#  approved   :boolean          default("unapproved"), not null
 #  content    :text(65535)      not null
-#  released   :boolean          default(FALSE), not null
+#  released   :boolean          default("unreleased"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint
