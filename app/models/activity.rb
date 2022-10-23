@@ -20,6 +20,8 @@
 #
 class Activity < ApplicationRecord
   belongs_to :user
+  has_many :acivity_location_types, dendent: :destroy
+  has_many :location_types, through: :acivity_location_types
 
   validates :content, presence: true
   validates :released, presence: true
