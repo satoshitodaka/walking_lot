@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_091329) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_065259) do
   create_table "action_location_types", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "action_id", null: false
     t.bigint "location_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["action_id", "location_type_id"], name: "index_action_location_types_on_action_id_and_location_type_id", unique: true
     t.index ["action_id"], name: "index_action_location_types_on_action_id"
     t.index ["location_type_id"], name: "index_action_location_types_on_location_type_id"
   end

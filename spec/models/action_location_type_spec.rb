@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_action_location_types_on_action_id         (action_id)
-#  index_action_location_types_on_location_type_id  (location_type_id)
+#  index_action_location_types_on_action_id                       (action_id)
+#  index_action_location_types_on_action_id_and_location_type_id  (action_id,location_type_id) UNIQUE
+#  index_action_location_types_on_location_type_id                (location_type_id)
 #
 # Foreign Keys
 #
