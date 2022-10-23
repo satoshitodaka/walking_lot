@@ -31,7 +31,6 @@ class Mypage::ActionsController < ApplicationController
   end
 
   private
-
     def action_params
       params.require(:action).permit(:content, { location_type_ids: [] }).merge(released: false, approved: false)
     end

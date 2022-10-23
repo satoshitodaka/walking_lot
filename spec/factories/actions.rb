@@ -20,9 +20,9 @@
 #
 FactoryBot.define do
   factory :action do
-    content { "MyText" }
+    content { 'MyText' }
     released { false }
-    approved { "MyString" }
+    approved { 'MyString' }
     user { nil }
   end
 end
