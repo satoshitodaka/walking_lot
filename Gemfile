@@ -36,6 +36,9 @@ gem 'sorcery'
 # 国際化
 gem 'rails-i18n', '~> 7.0.0'
 
+# 管理画面
+gem 'rails_admin', '~> 3.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -85,3 +88,4 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+gem "sassc-rails"
