@@ -2,7 +2,10 @@
 ja:
   activerecord:
     models:
-      user: ''
+      user: 'ユーザー'
+      lot: 'くじ'
+      activity: 'アクティビティ'
+      location_type: '場所タイプ'
     attributes:
       user:
         email: 'メールアドレス'
@@ -10,6 +13,21 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         admin: '管理者権限'
+      lot:
+        start_point_name: '出発地の名称'
+        start_point_address: '出発地の住所'
+        start_point_latitude: '出発地の緯度'
+        start_point_longitude: '出発地の経度'
+        destination_name: '目的地の名称'
+        destination_address: '目的地の住所'
+        destination_latitude: '目的地の緯度'
+        destination_longitude: '目的地の経度'
+        neaby_locations: '近隣の情報'
+      activity:
+        location_type: '場所のタイプ'
+        content: 'チャレンジすること'
+      location_type:
+        name: '場所タイプ'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -3,9 +3,9 @@
 # Table name: activities
 #
 #  id         :bigint           not null, primary key
-#  approved   :boolean          default(FALSE), not null
+#  approved   :boolean          default("unapproved"), not null
 #  content    :text(65535)      not null
-#  released   :boolean          default(FALSE), not null
+#  released   :boolean          default("unreleased"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint
@@ -21,5 +21,19 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    let(:user) { create(:user) }
+
+    it 'コンテンツが必須であること' do
+      activity = build(:activity, content: nil, user: user)
+      activity.valid?
+      expect(activity.errors[:content]).to include('を入力してください')
+    end
+
+    it 'Userが必須であること' do
+      activity = build(:activity, user: nil)
+      activity.valid?
+      expect(activity.errors[:user]).to include('を入力してください')
+    end
+  end
 end
