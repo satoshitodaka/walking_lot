@@ -29,4 +29,3 @@ RSpec.describe LocationType, type: :model do
     end
   end
 end
-

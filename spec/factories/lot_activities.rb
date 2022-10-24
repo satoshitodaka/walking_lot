@@ -20,6 +20,6 @@
 FactoryBot.define do
   factory :lot_activity do
     activity { nil }
-    lot_id { "MyString" }
+    lot_id { 'MyString' }
   end
 end

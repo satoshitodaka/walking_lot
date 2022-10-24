@@ -21,7 +21,6 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-
   describe 'バリデーション' do
     let(:user) { create(:user) }
 

@@ -29,7 +29,7 @@ class Activity < ApplicationRecord
   validates :released, presence: true
   validates :approved, presence: true
 
-  scope :get_same_location_type_activities, -> (location_type)  { joins(:activity_location_types).where(activity_location_types:{location_type_id: location_type}) }
+  scope :get_same_location_type_activities, -> (location_type)  { joins(:activity_location_types).where(activity_location_types: { location_type_id: location_type }) }
 
   enum released: { unreleased: false, released: true }
   enum approved: { unapproved: false, approved: true }

@@ -18,4 +18,3 @@ FactoryBot.define do
     name { 'MyString' }
   end
 end
-
