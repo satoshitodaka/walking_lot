@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: activity %>
 
   <div class="form-control w-full max-w-xs mb-5">
-    <%= f.label :location_types, class: 'label' %>
+    <%= f.label :location_type, class: 'label' %>
     <div class="flex flex-wrap gap-5">
       <%= f.collection_check_boxes :location_type_ids, LocationType.all, :id, :name do |b| %>
         <%= b.label class: 'label cursor-pointer justify-start gap-3' do %>
