@@ -44,7 +44,7 @@ class Mypage::ActivitiesController < ApplicationController
   private
 
     def activity_params
-      params.require(:activity).permit(:content).merge(released: false, approved: false)
+      params.require(:activity).permit(:content, { location_type_ids: [] }).merge(released: false, approved: false)
     end
 end
   
