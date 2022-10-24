@@ -1,8 +1,8 @@
 <div class="container mx-auto px-4 py-10 prose">
-  <h1>散歩くじの結果</h1>
+  <h2>散歩くじの結果</h2>
   <%# ここに写真を貼る %>
-  <div><%= @lot.destination_name %></div>
-  <h2>ここにアクションを載せる</h2>
+  <h3><%= @lot.destination_name %></h3>
+  <h3><%= @lot.activity.content %></h3>
   <div
     data-controller="show-map"
     data-show-map-latitude-value="<%= @lot.destination_latitude %>"

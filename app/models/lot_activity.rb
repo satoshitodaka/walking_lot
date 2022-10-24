@@ -19,4 +19,5 @@
 #
 class LotActivity < ApplicationRecord
   belongs_to :activity
+  belongs_to :lot
 end
