@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_23_231329) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_24_014546) do
   create_table "activities", charset: "utf8mb4", force: :cascade do |t|
     t.text "content", null: false
     t.boolean "released", default: false, null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_231329) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_type"], name: "index_location_types_on_location_type", unique: true
+  end
+
+  create_table "lot_activities", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.string "lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_lot_activities_on_activity_id"
+    t.index ["lot_id", "activity_id"], name: "index_lot_activities_on_lot_id_and_activity_id", unique: true
   end
 
   create_table "lots", id: { type: :string, limit: 36 }, charset: "utf8mb4", force: :cascade do |t|
@@ -70,5 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_231329) do
   add_foreign_key "activities", "users"
   add_foreign_key "activity_location_types", "activities"
   add_foreign_key "activity_location_types", "location_types"
+  add_foreign_key "lot_activities", "activities"
   add_foreign_key "lots", "users"
 end
