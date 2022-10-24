@@ -10,6 +10,14 @@
 #                                     lots POST   /lots(.:format)                                                                                   lots#create
 #                                  new_lot GET    /lots/new(.:format)                                                                               lots#new
 #                                      lot GET    /lots/:id(.:format)                                                                               lots#show
+#                        mypage_activities GET    /mypage/activities(.:format)                                                                      mypage/activities#index
+#                                          POST   /mypage/activities(.:format)                                                                      mypage/activities#create
+#                      new_mypage_activity GET    /mypage/activities/new(.:format)                                                                  mypage/activities#new
+#                     edit_mypage_activity GET    /mypage/activities/:id/edit(.:format)                                                             mypage/activities#edit
+#                          mypage_activity GET    /mypage/activities/:id(.:format)                                                                  mypage/activities#show
+#                                          PATCH  /mypage/activities/:id(.:format)                                                                  mypage/activities#update
+#                                          PUT    /mypage/activities/:id(.:format)                                                                  mypage/activities#update
+#                                          DELETE /mypage/activities/:id(.:format)                                                                  mypage/activities#destroy
 #         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
@@ -51,4 +59,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'user_sessions#destroy'
 
   resources :lots, only: %i[new create show]
+  namespace :mypage do
+    resources :activities
+  end
 end
