@@ -38,6 +38,7 @@ gem 'rails-i18n', '~> 7.0.0'
 
 # 管理画面
 gem 'rails_admin', '~> 3.0'
+gem 'cancancan'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
