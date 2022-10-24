@@ -65,14 +65,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_014546) do
     t.index ['user_id'], name: 'index_lots_on_user_id'
   end
 
-  create_table "activities", charset: "utf8mb4", force: :cascade do |t|
-    t.text "content", null: false
-    t.boolean "released", default: false, null: false
-    t.boolean "approved", default: false, null: false
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_activities_on_user_id"
+  create_table 'activities', charset: 'utf8mb4', force: :cascade do |t|
+    t.text 'content', null: false
+    t.boolean 'released', default: false, null: false
+    t.boolean 'approved', default: false, null: false
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_activities_on_user_id'
   end
 
   add_foreign_key 'activities', 'users'
