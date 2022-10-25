@@ -1,17 +1,29 @@
 <%= form_with model: lot, data: { controller: 'set-start-point' } do |f| %>
   <%= render 'shared/error_messages', object: lot %>
-  <%= f.label :location_type %>
-  <%= f.collection_select :location_type_id, LocationType.all, :id, :name, class: 'select select-bordered w-full max-w-xs' %>
-  <%= f.label :start_point_name %>
-  <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full' %>
-  <%= f.label :start_point_address %>
-  <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full' %>
-  <%= f.label :start_point_latitude %>
-  <%= f.text_field :start_point_latitude, class: 'input input-bordered input-primary w-full', readonly: true, data: { set_start_point_target: 'latitude' } %>
-  <%= f.label :start_point_longitude %>
-  <%= f.text_field :start_point_longitude, class: 'input input-bordered input-primary w-full', readonly: true, data: { set_start_point_target: 'longitude' } %>
-
+  <div class="form-control mb-5">
+    <%= f.label :location_type %>
+    <%= f.collection_select :location_type_id, LocationType.all, :id, :name, class: 'select select-bordered w-full max-w-xs mb-5' %>
+  </div>
+  <div class="form-control">
+    <%= f.label :start_point_name %>
+    <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5' %>
+  </div>
+  <div class="form-control">
+    <%= f.label :start_point_address %>
+    <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5' %>
+  </div>
+   <div class="form-control">
+    <%= f.label :start_point_latitude %>
+    <%= f.text_field :start_point_latitude, class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
+  </div>
+  <div class="form-control">
+    <%= f.label :start_point_longitude %>
+    <%= f.text_field :start_point_longitude, class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
+  </div>
   <p>地図をクリックしてマーカーを立ててください</p>
   <div data-set-start-point-target='map' class='h-[500px] mb-5' id="map"></div>
-  <%= f.submit class: 'btn btn-primary' %>
+
+  <div>
+    <%= f.submit class: 'btn btn-primary btn-block' %>
+  </div>
 <% end %>

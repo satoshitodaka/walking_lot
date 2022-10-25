@@ -2,8 +2,18 @@
   <h2>散歩くじの結果</h2>
   <%= image_tag "#{@lot.photo_url}.jpg" %>
 
+  <span class="badge badge-lg"><%= @lot.location_type.name %></span>
   <h3><%= @lot.destination_name %></h3>
-  <h3><%= @lot.activity.content %></h3>
+  <p><%= @lot.destination_address %></p>
+  
+  <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-5">
+    <div class="collapse-title text-xl font-medium">
+      くじの結果は・・・？チャレンジしてみよう！
+    </div>
+    <div class="collapse-content"> 
+      <p><%= @lot.activity.content %></p>
+    </div>
+  </div>
   <div
     data-controller="show-map"
     data-show-map-latitude-value="<%= @lot.destination_latitude %>"
