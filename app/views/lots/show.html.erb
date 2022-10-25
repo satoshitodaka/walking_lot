@@ -1,6 +1,7 @@
 <div class="container mx-auto px-4 py-10 prose">
   <h2>散歩くじの結果</h2>
-  <%# ここに写真を貼る %>
+  <%= image_tag "#{@lot.location_type.location_type}/0.jpg" %>
+
   <h3><%= @lot.destination_name %></h3>
   <h3><%= @lot.activity.content %></h3>
   <div
