@@ -8,6 +8,7 @@
 #  destination_longitude :float(24)
 #  destination_name      :string(255)
 #  neaby_locations       :json
+#  photo_url             :string(255)
 #  start_point_address   :string(255)
 #  start_point_latitude  :float(24)        not null
 #  start_point_longitude :float(24)        not null
@@ -40,6 +41,7 @@ class Lot < ApplicationRecord
   before_create :set_neaby_locations
   before_create :set_destination
   after_create :create_lot_activity
+  before_create :set_photo_url
 
   private
     def get_neaby_locations
@@ -70,5 +72,10 @@ class Lot < ApplicationRecord
         lot_id: self.id,
         activity_id: Activity.get_same_location_type_activities(self.location_type).sample.id
       )
+    end
+
+    def set_photo_url
+      self.photo_url = "#{self.location_type.location_type}/#{Random.rand(0 .. 9)}"
+      puts "#{self.photo_url}"
     end
 end
