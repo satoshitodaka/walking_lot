@@ -76,6 +76,5 @@ class Lot < ApplicationRecord
 
     def set_photo_url
       self.photo_url = "#{self.location_type.location_type}/#{Random.rand(0 .. 9)}"
-      puts "#{self.photo_url}"
     end
 end

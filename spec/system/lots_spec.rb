@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Lots", type: :system do
+RSpec.describe 'Lots', type: :system do
   let!(:user) { create(:user) }
   let!(:location_type) { create(:location_type) }
   let!(:activity) { create(:activity) }
@@ -22,7 +22,7 @@ RSpec.describe "Lots", type: :system do
         expect(page).to have_content '散歩くじの結果'
       end
     end
-    
+
     context 'ログインユーザー' do
       before do
         login_as(user)
@@ -42,5 +42,3 @@ RSpec.describe "Lots", type: :system do
     end
   end
 end
-
-  
