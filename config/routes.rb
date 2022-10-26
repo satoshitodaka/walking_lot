@@ -76,4 +76,9 @@ Rails.application.routes.draw do
   namespace :mypage do
     resources :activities
   end
+
+  get '/about', to: 'static_pages#about'
+  get '/privacy', to: 'static_pages#privacy'
+  get '/rules', to: 'static_pages#rules'
+  get '/tips_to_enjoy', to: 'static_pages#tips_to_enjoy'
 end
