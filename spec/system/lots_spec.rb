@@ -20,6 +20,7 @@ RSpec.describe 'Lots', type: :system do
         page.driver.browser.action.move_to(map, 200, 190).click.perform
         click_on '登録する'
         expect(page).to have_content '散歩くじの結果'
+        puts "#{Rails.application.credentials.google_map_api_key}"
       end
     end
 
