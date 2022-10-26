@@ -1,4 +1,10 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
-<h1>さんぽくじへようこそ</h1>
-<button class="btn btn-primary">Join us!</button>
+<div class="hero min-h-screen" style="background-image: url(<%= asset_url('hero.jpg') %>);">
+  <div class="hero-overlay bg-opacity-50"></div>
+  <div class="hero-content text-center text-neutral-content">
+    <div class="max-w-md">
+      <h1 class="mb-5 text-5xl font-bold">散歩に行こう。</h1>
+      <p class="mb-5">「散歩くじ」は散歩の行先と楽しみをくじ引きのように提案するサービスです。</p>
+      <%= link_to 'いますぐ散歩くじを引く', new_lot_path, class:"btn btn-primary"%>
+    </div>
+  </div>
+</div>
