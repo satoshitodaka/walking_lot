@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: lot %>
   <div class="form-control mb-5">
     <%= f.label :location_type %>
-    <%= f.collection_select :location_type_id, LocationType.all, :id, :name, class: 'select select-bordered w-full max-w-xs mb-5' %>
+    <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: "場所のタイプを選択してください" }, { class: 'select select-bordered w-full mb-5'} %>
   </div>
   <div class="form-control">
     <%= f.label :start_point_name %>

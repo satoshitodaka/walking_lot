@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import { current } from "daisyui/src/colors";
 
 export default class extends Controller {
   static targets = [ 'latitude', 'longitude', 'map' ]
@@ -14,6 +13,44 @@ export default class extends Controller {
     const map = new google.maps.Map(this.mapTarget, {
       center: centerLocation,
       zoom: 16
+    });
+
+    // 現在地を取得する機能
+    // 定数locationButtonを定義し、要素buttonを代入する
+    const locationButton = document.createElement("button");
+    // ボタンのテキスト表示を設定
+    locationButton.textContent = "現在地から歩く";
+    // ボタンのCSSクラスを定義する
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
+    locationButton.addEventListener("click", (e) => {
+      // フォームのデフォルトの動作をキャンセルする
+      e.preventDefault();
+      // マーカーがあれば削除する
+      if (currentMarker != null) {
+        currentMarker.setMap(null)
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            // mapの中心に取得したposをセットする
+            map.setCenter(pos);
+            currentMarker = new google.maps.Marker({
+              position: pos,
+              map: map
+            });
+            // 設定したTargetの値に、イベントで取得した緯度経度情報を代入する。これにより、Form側で紐付けた入力欄に渡される
+            this.latitudeTarget.value = pos.lat
+            this.longitudeTarget.value = pos.lng
+          }
+        );
+      } else {
+        return false
+      }
     });
 
     map.addListener("click", (e) => {
