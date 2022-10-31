@@ -46,6 +46,8 @@ export default class extends Controller {
               map: map
             });
             // 設定したTargetの値に、イベントで取得した緯度経度情報を代入する。これにより、Form側で紐付けた入力欄に渡される
+            this.startpointnameTarget.value = '現在地';
+            this.startpointaddressTarget.value = '現在地近辺';
             this.latitudeTarget.value = pos.lat
             this.longitudeTarget.value = pos.lng
           }
@@ -100,7 +102,6 @@ export default class extends Controller {
           title: place.name, //名称
           position: place.geometry.location, //緯度経度
           address: place.formatted_address, // 住所
-          placeId: place.place_id
         })
         markers.push(marker);
 
@@ -160,9 +161,6 @@ export default class extends Controller {
         currentMarker.setMap(null)
       }
 
-      if (infoWindow != null) {
-        infoWindow.close()
-      }
       // currentMarkerにマーカーをセットする。
       // マーカーのpositionに、clickした地点の情報latLngのlatとlngをそれぞれ代入する
       currentMarker = new google.maps.Marker({
@@ -170,6 +168,8 @@ export default class extends Controller {
         map: map
       });
       // 設定したTargetの値に、イベントで取得した緯度経度情報を代入する。これにより、Form側で紐付けた入力欄に渡される
+      this.startpointnameTarget.value = 'クリックした場所';
+      this.startpointaddressTarget.value = 'クリックした場所近辺';
       this.longitudeTarget.value = e.latLng.lng()
       this.latitudeTarget.value = e.latLng.lat()
     });

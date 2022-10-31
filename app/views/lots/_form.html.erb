@@ -4,6 +4,30 @@
     <%= f.label :location_type %>
     <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: "場所のタイプを選択してください" }, { class: 'select select-bordered w-full mb-5'} %>
   </div>
+  
+  <p>出発地点を登録してください</p>
+  <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mb-5">
+    <div class="collapse-title font-medium">
+      登録のヒント
+    </div>
+    <div class="collapse-content"> 
+      <p>いずれかの方法で出発地点を登録できます</p>
+      <ul>
+        <li>出発地点をクリックする</li>
+        <li>「現在地から歩く」をクリックする</li>
+        <li>出発地を検索する</li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-set-start-point-target='map' class='h-[500px] mb-5' id="map"></div>
+    <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="検索"
+      />
+  <div>
   <div class="form-control">
     <%= f.label :start_point_name %>
     <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointname' } %>
@@ -12,22 +36,8 @@
     <%= f.label :start_point_address %>
     <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
   </div>
-   <div class="form-control">
-    <%= f.label :start_point_latitude %>
-    <%= f.text_field :start_point_latitude, class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
-  </div>
-  <div class="form-control">
-    <%= f.label :start_point_longitude %>
-    <%= f.text_field :start_point_longitude, class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
-  </div>
-  <p>地図をクリックしてマーカーを立ててください</p>
-  <div data-set-start-point-target='map' class='h-[500px] mb-5' id="map"></div>
-  <input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="検索"
-    />
+  <%= f.text_field :start_point_latitude, type:'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
+  <%= f.text_field :start_point_longitude, type:'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
   <div>
     <%= f.submit class: 'btn btn-primary btn-block' %>
   </div>
