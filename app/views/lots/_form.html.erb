@@ -6,11 +6,11 @@
   </div>
   <div class="form-control">
     <%= f.label :start_point_name %>
-    <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5' %>
+    <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointname' } %>
   </div>
   <div class="form-control">
     <%= f.label :start_point_address %>
-    <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5' %>
+    <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
   </div>
    <div class="form-control">
     <%= f.label :start_point_latitude %>
@@ -22,7 +22,12 @@
   </div>
   <p>地図をクリックしてマーカーを立ててください</p>
   <div data-set-start-point-target='map' class='h-[500px] mb-5' id="map"></div>
-
+  <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="検索"
+    />
   <div>
     <%= f.submit class: 'btn btn-primary btn-block' %>
   </div>
