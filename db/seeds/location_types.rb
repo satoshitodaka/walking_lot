@@ -1,5 +1,5 @@
-type = [0, 1, 2, 3, 4, 5, 6, 7]
-type_name = %w[どこでも カフェ 公園 観光スポット 温泉 パン屋 本屋 神社・寺]
+type = [0, 1, 2, 3, 4, 5, 6]
+type_name = %w[どこでも カフェ 公園 観光スポット 温泉 パン屋 本屋]
 
 puts 'Start inserting seed "location_type"...'
 

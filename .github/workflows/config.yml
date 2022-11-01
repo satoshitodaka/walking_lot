@@ -16,6 +16,7 @@ jobs:
       image: ruby:3.1.2
     env:
       RAILS_ENV: test
+      google_map_api_key: ${{ secrets.GOOGLE_MAP_API_KEY }}
     steps:
       - uses: actions/checkout@v2 #@v3で通るか確認、またruby-setupも試す
       - name: Setup node and yarn

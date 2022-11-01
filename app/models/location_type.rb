@@ -26,6 +26,5 @@ class LocationType < ApplicationRecord
                         spa: 4,
                         bakery: 5,
                         book_store: 6,
-                        hindu_temple: 7
   }
 end
