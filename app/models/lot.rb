@@ -41,7 +41,6 @@ class Lot < ApplicationRecord
   before_create :set_neaby_locations
   before_create :set_destination
   after_create :create_lot_activity
-  before_create :set_photo_url
 
   private
     def get_neaby_locations
@@ -65,6 +64,7 @@ class Lot < ApplicationRecord
       self.destination_address = destination_infomations['vicinity']
       self.destination_latitude = destination_infomations['geometry']['location']['lat']
       self.destination_longitude = destination_infomations['geometry']['location']['lng']
+      self.photo_url = destination_infomations['photos'][0]['photo_reference']
     end
 
     def create_lot_activity
@@ -72,9 +72,5 @@ class Lot < ApplicationRecord
         lot_id: self.id,
         activity_id: Activity.get_same_location_type_activities(self.location_type).sample.id
       )
-    end
-
-    def set_photo_url
-      self.photo_url = "#{self.location_type.location_type}/#{Random.rand(0 .. 9)}"
     end
 end
