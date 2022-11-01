@@ -2,15 +2,15 @@
   <%= render 'shared/error_messages', object: lot %>
   <div class="form-control mb-5">
     <%= f.label :location_type %>
-    <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: "場所のタイプを選択してください" }, { class: 'select select-bordered w-full mb-5'} %>
+    <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: '場所のタイプを選択してください' }, { class: 'select select-bordered w-full mb-5' } %>
   </div>
-  
+
   <p>出発地点を登録してください</p>
   <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mb-5">
     <div class="collapse-title font-medium">
       登録のヒント
     </div>
-    <div class="collapse-content"> 
+    <div class="collapse-content">
       <p>いずれかの方法で出発地点を登録できます</p>
       <ul>
         <li>出発地点をクリックする</li>
@@ -25,8 +25,7 @@
         id="pac-input"
         class="controls"
         type="text"
-        placeholder="検索"
-      />
+        placeholder="検索">
   <div>
   <div class="form-control">
     <%= f.label :start_point_name %>
@@ -36,8 +35,8 @@
     <%= f.label :start_point_address %>
     <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
   </div>
-  <%= f.text_field :start_point_latitude, type:'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
-  <%= f.text_field :start_point_longitude, type:'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
+  <%= f.text_field :start_point_latitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
+  <%= f.text_field :start_point_longitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
   <div>
     <%= f.submit class: 'btn btn-primary btn-block' %>
   </div>

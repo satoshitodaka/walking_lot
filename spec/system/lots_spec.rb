@@ -44,7 +44,7 @@ RSpec.describe 'Lots', type: :system do
           click_on 'くじを引く'
         end
         select 'どこでも', from: 'lot_location_type_id'
-        page.execute_script "navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 35.6895014, longitude: 139.6917337}}); }"
+        page.execute_script 'navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 35.6895014, longitude: 139.6917337}}); }'
         click_on '現在地から歩く'
         click_on '登録する'
         expect(page).to have_content '散歩くじの結果'
@@ -60,7 +60,7 @@ RSpec.describe 'Lots', type: :system do
           click_on 'くじを引く'
         end
         select 'どこでも', from: 'lot_location_type_id'
-        page.execute_script "navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 35.6895014, longitude: 139.6917337}}); }"
+        page.execute_script 'navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 35.6895014, longitude: 139.6917337}}); }'
         click_on '現在地から歩く'
         click_on '登録する'
         expect(page).to have_content '散歩くじの結果'
