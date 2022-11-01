@@ -1,12 +1,36 @@
 <div class="container mx-auto px-4 py-10 prose">
   <h2>散歩くじの結果</h2>
-  <%# ここに写真を貼る %>
-  <h3><%= @lot.destination_name %></h3>
-  <h3><%= @lot.activity.content %></h3>
+
+  <div class="card bg-base-100 shadow-xl">
+    <figure><%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{@lot.photo_url}&key=#{Rails.application.credentials.google_map_api_key}" %></figure>
+    <div class="m-0">
+      <%= image_tag 'google_on_white.png' %>
+    </div>
+    <div class="card-body">
+      <h2 class="card-title">
+       <%= @lot.destination_name %>
+      </h2>
+      <p><%= @lot.destination_address %></p>
+      <div class="card-actions justify-end">
+        <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
+      </div>
+    </div>
+  </div>
+
+  <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-5">
+    <div class="collapse-title text-xl font-medium">
+      くじの結果は・・・？チャレンジしてみよう！
+    </div>
+    <div class="collapse-content">
+      <p><%= @lot.activity.content %></p>
+    </div>
+  </div>
   <div
     data-controller="show-map"
-    data-show-map-latitude-value="<%= @lot.destination_latitude %>"
-    data-show-map-longitude-value="<%= @lot.destination_longitude %>"
+    data-show-map-destinationlatitude-value="<%= @lot.destination_latitude %>"
+    data-show-map-destinationlongitude-value="<%= @lot.destination_longitude %>"
+    data-show-map-startpointlatitude-value="<%= @lot.start_point_latitude %>"
+    data-show-map-startpointlongitude-value="<%= @lot.start_point_longitude %>"
     class="h-[400px]">
   </div>
   <%# リンク類を貼る %>

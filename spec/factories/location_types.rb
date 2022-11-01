@@ -14,7 +14,7 @@
 #
 FactoryBot.define do
   factory :location_type do
-    location_type { Random.rand(0 .. 7) }
-    name { 'MyString' }
+    location_type { 0 }
+    name { 'どこでも' }
   end
 end

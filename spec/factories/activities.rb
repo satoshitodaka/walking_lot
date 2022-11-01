@@ -20,9 +20,9 @@
 #
 FactoryBot.define do
   factory :activity do
-    content { 'MyText' }
+    content { '写真を撮る' }
     released { false }
     approved { false }
-    user { nil }
+    user
   end
 end

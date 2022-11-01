@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_014546) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_120257) do
   create_table 'activities', charset: 'utf8mb4', force: :cascade do |t|
     t.text 'content', null: false
     t.boolean 'released', default: false, null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_014546) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.bigint 'location_type_id', null: false
+    t.string 'photo_url'
     t.index ['user_id'], name: 'index_lots_on_user_id'
   end
 

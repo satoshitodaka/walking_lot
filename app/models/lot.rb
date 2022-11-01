@@ -8,6 +8,7 @@
 #  destination_longitude :float(24)
 #  destination_name      :string(255)
 #  neaby_locations       :json
+#  photo_url             :string(255)
 #  start_point_address   :string(255)
 #  start_point_latitude  :float(24)        not null
 #  start_point_longitude :float(24)        not null
@@ -45,7 +46,7 @@ class Lot < ApplicationRecord
     def get_neaby_locations
       google_map_api_key = Rails.application.credentials.google_map_api_key
       start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
-      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&type=#{ self.location_type.location_type }&language=ja&key=#{ google_map_api_key }"
+      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&type=#{ self.location_type.location_type }&language=ja&opennow&key=#{ google_map_api_key }"
       uri = URI.parse(url)
       response = Net::HTTP.get(uri)
       JSON.parse(response)
@@ -63,6 +64,7 @@ class Lot < ApplicationRecord
       self.destination_address = destination_infomations['vicinity']
       self.destination_latitude = destination_infomations['geometry']['location']['lat']
       self.destination_longitude = destination_infomations['geometry']['location']['lng']
+      self.photo_url = destination_infomations['photos'][0]['photo_reference']
     end
 
     def create_lot_activity
