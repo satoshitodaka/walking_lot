@@ -85,8 +85,6 @@ export default class extends Controller {
       });
       markers = [];
 
-      const service = new google.maps.places.PlacesService(map);
-
       // 取得した情報に対し、アイコンと場所の情報を取得する
       const bounds = new google.maps.LatLngBounds();
 
@@ -126,7 +124,7 @@ export default class extends Controller {
           if (currentInfoWindow) {
             currentInfoWindow.close();
           }
-          // currentInfoWindowとしてinfowindowを開く
+          // infowindowを開く
           infowindow.open({
             map,
             anchor: marker
