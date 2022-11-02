@@ -19,7 +19,7 @@ jobs:
       google_map_api_key: ${{ secrets.GOOGLE_MAP_API_KEY }}
     steps:
       - name: check environment variable
-        run: echo $google_map_api_key
+        run: echo "key = ${{ secrets.GOOGLE_MAP_API_KEY }}"
       - uses: actions/checkout@v2 #@v3で通るか確認、またruby-setupも試す
       - name: Setup node and yarn
         run: |
