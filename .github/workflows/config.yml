@@ -16,7 +16,7 @@ jobs:
       image: ruby:3.1.2
     env:
       RAILS_ENV: test
-      google_map_api_key: ${{ secrets.GOOGLE_MAP_API_KEY }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
       - name: check environment variable
         run: echo "key = ${{ secrets.GOOGLE_MAP_API_KEY }}"
