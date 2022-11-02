@@ -32,6 +32,8 @@ RSpec.describe 'Lots', type: :system do
         end
         select 'どこでも', from: 'lot_location_type_id'
         find('#map').click.click(x: 30, y: 30)
+        find('#map').click.click(x: 30, y: 30)
+        find('#map').click.click(x: 30, y: 30)
         click_on '登録する'
         expect(page).to have_content '散歩くじの結果'
       end
