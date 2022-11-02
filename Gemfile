@@ -43,6 +43,9 @@ gem 'cancancan'
 # 定数管理
 gem 'config'
 
+# メタタグ
+gem 'meta-tags'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
