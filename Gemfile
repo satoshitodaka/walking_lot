@@ -40,6 +40,9 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 
+# 定数管理
+gem 'config'
+
 # メタタグ
 gem 'meta-tags'
 

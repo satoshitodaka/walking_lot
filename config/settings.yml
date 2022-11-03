@@ -1,0 +1,12 @@
+meta:
+  site: '散歩くじ'
+  title: '散歩くじ - 見知らぬ場所まで散歩しよう'
+  description: '散歩くじは、散歩の行先と目的を提案するくじアプリです。'
+  keywords:
+    - '散歩'
+    - 'くじ'
+    - '旅くじ'
+    - '旅行'
+  og:
+    type: website
+    image_path: ogp.png
