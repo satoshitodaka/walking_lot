@@ -1,1 +1,67 @@
-<h1>Static_pages#about</h1>
+<% set_meta_tags title: '散歩くじについて' %>
+<div class="container mx-auto py-10 px-4 prose">
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <li><%= link_to 'ホーム', root_path %></li> 
+      <li><p>散歩くじについて</p></li>
+    </ul>
+  </div>
+  <h1>散歩くじについて</h1>
+  <p>「散歩くじ」は散歩の行先と目的をランダムに提案するサービスです。あなたも「散歩くじ」を引いて新しい場所まで散歩しましょう！</p>
+  <h2>使い方</h2>
+  <div>
+    <ul class="steps steps-vertical">
+      <li class="step step-primary"><%= link_to '行きたい場所のタイプを選ぶ', about_path(anchor: "step1") %></li>
+      <li class="step step-primary"><%= link_to '出発地点を選んでくじを引く', about_path(anchor: "step2") %></li>
+      <li class="step step-primary"><%= link_to 'くじに書かれた場所まで散歩する', about_path(anchor: "step3") %></li>
+      <li class="step step-primary"><%= link_to 'アクティビティにチャレンジする', about_path(anchor: "step4") %></li>
+      <li class="step step-primary"><%= link_to 'ご家族や友人にシェアしよう', about_path(anchor: "step5") %></li>
+    </ul>
+  </div>
+  <div id="step1">
+    <h3>1. 行きたい場所のタイプを選ぶ</h3>
+    <p>散歩の行先のタイプを以下から選ぶことができます</p>
+    <% LocationType.all.each do |location_type| %>
+      <span class="badge badge-lg badge-outline"><%= location_type.name %></span>
+    <% end %>
+  </div>
+  <div id="step2">
+    <h3>2. 出発地点を選んでくじを引く</h3>
+    <p>以下いずれかの方法で散歩の出発地点を設定してください。</p>
+    <ul>
+      <li>地図をクリックして設定する</li>
+      <li>位置情報を利用して現在地を設定する</li>
+      <li>場所を検索して出発地を設定する</li>
+    </ul>
+  </div>
+  <div id="step3">
+    <h3>3. くじに書かれた場所まで散歩する</h3>
+    <p>くじに書かれた場所まで散歩しましょう。ルートの指定はありませんが、ご不安な方は「GoogleMapで開く」ボタンより経路を確認してください。</p>
+  </div>
+  <div id="step4">
+    <h3>4. アクティビティにチャレンジする</h3>
+    <p>散歩の行先で余裕があれば、くじに書かれたアクティビティにチャレンジしてみましょう。苦手なアクティビティであればスルーしても大丈夫です。チャレンジできたら、写真を撮って残すと良いですね。</p>
+  </div>
+  <div id="step5">
+    <h3>5. ご家族や友人にシェアしよう</h3>
+    <p>もし散歩くじを気に入っていただけたら、SNSやLINEでシェアしていただけると嬉しいです。機会があればご家族や友人と散歩に出かけてみてください。</p>
+    <div class="alert alert-warning shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <span>場所の情報をシェアしますので、シェア前に内容をよくご確認ください</span>
+      </div>
+    </div>
+  </div>
+  <h2>準備はできましたか？</h2>
+  <%= link_to '散歩くじを引く', new_lot_path, class: "btn btn-primary btn-block mb-5"%>
+
+  <h2>ユーザー登録ついて</h2>
+  <p>ユーザー登録をすると以下ができるようになります。</p>
+  <ul>
+    <li>作成したくじの管理と閲覧</li>
+    <li>新しいアクティビティの作成</li>
+  </ul>
+  <% if !current_user %>
+    <%= link_to 'ユーザー登録する', signup_path, class: "btn btn-info btn-block mb-5"%>
+  <% end %>
+</div>

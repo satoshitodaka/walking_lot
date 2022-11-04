@@ -16,9 +16,13 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
-    <%= render 'shared/flash/flash_messages' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <div class="flex flex-col min-h-screen">
+      <%= render 'shared/header' %>
+      <%= render 'shared/flash/flash_messages' %>
+      <div class="grow">
+        <%= yield %>
+      </div>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>

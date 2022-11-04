@@ -1,6 +1,9 @@
 <div class="navbar bg-base-100" id="header">
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">散歩くじ</a>
+    <%= link_to root_path, class:"btn btn-ghost normal-case text-xl" do %>
+      <%= image_tag 'brand-logo.png' %>
+      <span>散歩くじ</span>
+    <% end %>
   </div>
   <div class="flex-none">
     <div class="flex-shrink-0">
