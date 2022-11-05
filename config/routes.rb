@@ -19,6 +19,10 @@
 #                                          PATCH  /mypage/activities/:id(.:format)                                                                  mypage/activities#update
 #                                          PUT    /mypage/activities/:id(.:format)                                                                  mypage/activities#update
 #                                          DELETE /mypage/activities/:id(.:format)                                                                  mypage/activities#destroy
+#                                    about GET    /about(.:format)                                                                                  static_pages#about
+#                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
+#                                    rules GET    /rules(.:format)                                                                                  static_pages#rules
+#                            tips_to_enjoy GET    /tips_to_enjoy(.:format)                                                                          static_pages#tips_to_enjoy
 #         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
@@ -76,4 +80,9 @@ Rails.application.routes.draw do
   namespace :mypage do
     resources :activities
   end
+
+  get '/about', to: 'static_pages#about'
+  get '/privacy', to: 'static_pages#privacy'
+  get '/rules', to: 'static_pages#rules'
+  get '/tips_to_enjoy', to: 'static_pages#tips_to_enjoy'
 end
