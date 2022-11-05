@@ -2,7 +2,7 @@
 <div class="container mx-auto py-10 px-4 prose">
   <div class="text-sm breadcrumbs">
     <ul>
-      <li><%= link_to 'ホーム', root_path %></li> 
+      <li><%= link_to 'ホーム', root_path %></li>
       <li><p>散歩くじについて</p></li>
     </ul>
   </div>
@@ -11,11 +11,11 @@
   <h2>使い方</h2>
   <div>
     <ul class="steps steps-vertical">
-      <li class="step step-primary"><%= link_to '行きたい場所のタイプを選ぶ', about_path(anchor: "step1") %></li>
-      <li class="step step-primary"><%= link_to '出発地点を選んでくじを引く', about_path(anchor: "step2") %></li>
-      <li class="step step-primary"><%= link_to 'くじに書かれた場所まで散歩する', about_path(anchor: "step3") %></li>
-      <li class="step step-primary"><%= link_to 'アクティビティにチャレンジする', about_path(anchor: "step4") %></li>
-      <li class="step step-primary"><%= link_to 'ご家族や友人にシェアしよう', about_path(anchor: "step5") %></li>
+      <li class="step step-primary"><%= link_to '行きたい場所のタイプを選ぶ', about_path(anchor: 'step1') %></li>
+      <li class="step step-primary"><%= link_to '出発地点を選んでくじを引く', about_path(anchor: 'step2') %></li>
+      <li class="step step-primary"><%= link_to 'くじに書かれた場所まで散歩する', about_path(anchor: 'step3') %></li>
+      <li class="step step-primary"><%= link_to 'アクティビティにチャレンジする', about_path(anchor: 'step4') %></li>
+      <li class="step step-primary"><%= link_to 'ご家族や友人にシェアしよう', about_path(anchor: 'step5') %></li>
     </ul>
   </div>
   <div id="step1">
@@ -53,7 +53,7 @@
     </div>
   </div>
   <h2>準備はできましたか？</h2>
-  <%= link_to '散歩くじを引く', new_lot_path, class: "btn btn-primary btn-block mb-5"%>
+  <%= link_to '散歩くじを引く', new_lot_path, class: 'btn btn-primary btn-block mb-5' %>
 
   <h2>ユーザー登録ついて</h2>
   <p>ユーザー登録をすると以下ができるようになります。</p>
@@ -62,6 +62,6 @@
     <li>新しいアクティビティの作成</li>
   </ul>
   <% if !current_user %>
-    <%= link_to 'ユーザー登録する', signup_path, class: "btn btn-info btn-block mb-5"%>
+    <%= link_to 'ユーザー登録する', signup_path, class: 'btn btn-info btn-block mb-5' %>
   <% end %>
 </div>
