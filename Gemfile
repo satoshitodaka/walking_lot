@@ -46,6 +46,9 @@ gem 'config'
 # メタタグ
 gem 'meta-tags'
 
+# ActiveStrage
+gem 'activestorage-validator'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
