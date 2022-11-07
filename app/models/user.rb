@@ -19,10 +19,12 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :lots, dependent: :destroy
   has_many :activities, dependent: :nullify
+  has_one_attached :avatar
 
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
 end
