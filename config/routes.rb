@@ -19,6 +19,11 @@
 #                                          PATCH  /mypage/activities/:id(.:format)                                                                  mypage/activities#update
 #                                          PUT    /mypage/activities/:id(.:format)                                                                  mypage/activities#update
 #                                          DELETE /mypage/activities/:id(.:format)                                                                  mypage/activities#destroy
+#                      edit_mypage_account GET    /mypage/account/edit(.:format)                                                                    mypage/accounts#edit
+#                           mypage_account GET    /mypage/account(.:format)                                                                         mypage/accounts#show
+#                                          PATCH  /mypage/account(.:format)                                                                         mypage/accounts#update
+#                                          PUT    /mypage/account(.:format)                                                                         mypage/accounts#update
+#                                          DELETE /mypage/account(.:format)                                                                         mypage/accounts#destroy
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
 #                                    rules GET    /rules(.:format)                                                                                  static_pages#rules
@@ -79,6 +84,7 @@ Rails.application.routes.draw do
   resources :lots, only: %i[new create show]
   namespace :mypage do
     resources :activities
+    resource :account, only: %i[show edit update destroy]
   end
 
   get '/about', to: 'static_pages#about'

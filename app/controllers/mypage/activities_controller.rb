@@ -1,4 +1,4 @@
-class Mypage::ActivitiesController < ApplicationController
+class Mypage::ActivitiesController < Mypage::BaseController
   before_action :require_login
 
   def new

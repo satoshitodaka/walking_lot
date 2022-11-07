@@ -13,6 +13,7 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         admin: '管理者権限'
+        avatar: 'プロフィール画像'
       lot:
         location_type: '行きたい場所のタイプ'
         start_point_name: '出発地'

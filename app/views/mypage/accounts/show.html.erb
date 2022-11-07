@@ -1,0 +1,11 @@
+<% set_meta_tags title: 'マイページ' %>
+<div class="container mx-auto px-4 py-10 prose">
+  <div>
+    <%= render 'user' %>
+  <div>
+  <h4>アクションを作る</h4>
+  <div>
+    <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block' %>
+  </div>
+  <h4>散歩くじの履歴</h4>
+</div>
