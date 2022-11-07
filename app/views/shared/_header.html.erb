@@ -43,7 +43,8 @@
             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
           </a>
           <ul class="p-2 bg-base-100">
-            <li><%= link_to 'マイページ', about_path %></li>
+            <li><%= link_to 'マイページ', mypage_account_path %></li>
+            <li><%= link_to 'アクティビティ管理', mypage_activities_path  %></li>
             <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %></li>
           </ul>
         </li>
@@ -67,13 +68,16 @@
     <% if logged_in? %>
       <!-- for login User -->
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar lg:hidden">
-          <div class="w-10 rounded-full">
-            <img src="https://placeimg.com/80/80/people">
+        <label tabindex="0" class="btn btn-ghost btn-circle lg:hidden">
+          <div class="avatar">
+            <div class="w-11 rounded-full">
+              <%= image_tag current_user.avatar %>
+            </div>
           </div>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to 'マイページ', '#' %></li>
+          <li><%= link_to 'マイページ', mypage_account_path %></li>
+          <li><%= link_to 'アクティビティ管理', mypage_activities_path  %></li>
           <li><%= link_to '使い方', about_path %></li>
           <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
           <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %></li>

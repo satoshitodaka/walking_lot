@@ -1,7 +1,10 @@
-<div class='mx-auto max-w-xs mb-5 '>
+<div class='mx-auto max-w-xs mb-5'>
   <%= form_with model: user, url: signup_path do |f| %>
     <%= render 'shared/error_messages', object: @user %>
-    <%# ここにアバター登録フォームを追加する %>
+    <div class="form-control w-full mb-5">
+      <%= f.label :avatar, class: 'label' %>
+      <%= f.file_field :avatar, class:"file-input file-input-bordered w-full" %>
+    </div>
     <div class="form-control w-full mb-5">
       <%= f.label :name, class: 'label' %>
       <%= f.text_field :name, class: 'input input-bordered input-primary w-full ' %>
