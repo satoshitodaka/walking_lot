@@ -31,9 +31,8 @@ class User < ApplicationRecord
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
 
   private
-
-  def default_avatar
-    return if avatar.attached?
-    avatar.attach(io: File.open(Rails.root.join('app/assets/images/default_avatar.png')), filename: 'default_avatar.png')
-  end
+    def default_avatar
+      return if avatar.attached?
+      avatar.attach(io: File.open(Rails.root.join('app/assets/images/default_avatar.png')), filename: 'default_avatar.png')
+    end
 end
