@@ -21,7 +21,7 @@ class Mypage::AccountsController < Mypage::BaseController
   def destroy
     user = User.find(current_user.id)
     user.destroy!
-    redirect_to root_path, success: 'ユーザー情報を削除しました'
+    redirect_to root_path, success: 'ユーザー情報を削除しました。ご利用ありがとうございました。'
   end
 
   private
