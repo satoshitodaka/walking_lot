@@ -7,10 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <script async
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_map_api_key %>&libraries=places">
-    </script>
-
     <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
     <%= javascript_include_tag 'application', "data-turbo-track": 'reload', defer: true %>
   </head>
@@ -18,9 +14,11 @@
   <body>
     <div class="flex flex-col min-h-screen">
       <%= render 'shared/header' %>
-      <%= render 'shared/flash/flash_messages' %>
-      <div class="grow mt-5 mb-12">
-        <%= yield %>
+      <div class="grow mt-16 mb-12">
+        <%= render 'shared/flash/flash_messages' %>
+        <div class="container mx-auto px-4 py-10">
+          <%= yield %>
+        </div>
       </div>
       <%= render 'shared/footer' %>
     </div>
