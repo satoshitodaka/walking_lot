@@ -1,5 +1,4 @@
 class Mypage::ActivitiesController < Mypage::BaseController
-  before_action :require_login
 
   def new
     @activity = Activity.new

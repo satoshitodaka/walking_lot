@@ -19,6 +19,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :lots, dependent: :destroy
   has_many :activities, dependent: :nullify
+  has_many :user_notifications, dependent: :destroy
+  has_many :notifications, through: :user_notifications
   has_one_attached :avatar
 
   before_create :default_avatar

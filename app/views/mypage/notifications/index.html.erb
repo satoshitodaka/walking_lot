@@ -1,0 +1,18 @@
+<% set_meta_tags title: '通知一覧' %>
+<h2>通知一覧</h2>
+<div class="container">
+  <% if @user_notifications.present? %>
+    <ul>
+      <% @user_notifications.each do |user_notification| %>
+        <li>
+          <div class="text-sm text-slate-500">
+            <%= user_notification.created_at %>
+          </div>
+          <%= user_notification.notification_title %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>お知らせはありません</p>
+  <% end %>
+</div>

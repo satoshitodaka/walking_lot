@@ -11,6 +11,7 @@
 #                                     lots POST   /lots(.:format)                                                                                   lots#create
 #                                  new_lot GET    /lots/new(.:format)                                                                               lots#new
 #                                      lot GET    /lots/:id(.:format)                                                                               lots#show
+#                     mypage_notifications GET    /mypage/notifications(.:format)                                                                   mypage/notifications#index
 #                        mypage_activities GET    /mypage/activities(.:format)                                                                      mypage/activities#index
 #                                          POST   /mypage/activities(.:format)                                                                      mypage/activities#create
 #                      new_mypage_activity GET    /mypage/activities/new(.:format)                                                                  mypage/activities#new
@@ -83,6 +84,7 @@ Rails.application.routes.draw do
 
   resources :lots, only: %i[new create show]
   namespace :mypage do
+    resources :notifications, only: %i[index]
     resources :activities
     resource :account, only: %i[show edit update destroy]
   end
