@@ -32,6 +32,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
 
+  scope :admin, -> { where(admin: true) }
+  
   private
     def default_avatar
       return if avatar.attached?
