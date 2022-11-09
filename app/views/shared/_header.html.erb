@@ -55,7 +55,9 @@
       <% end %>
     </ul>
     <!-- Notification Icon -->
-    <%= render 'shared/notifications', user_notifications: current_user.user_notifications.where(read: false).includes(:notification).limit(3) %>
+    <% if logged_in? %>
+      <%= render 'shared/notifications', user_notifications: current_user.user_notifications.where(read: false).includes(:notification).limit(3) %>
+    <% end %>
     <!-- Dropdown menu for smart phone -->
     <% if logged_in? %>
       <!-- for login User -->

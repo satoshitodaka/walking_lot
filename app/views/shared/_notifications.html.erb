@@ -12,19 +12,19 @@
       <% if user_notifications.size > 0 %>
         <% user_notifications.each do |user_notification| %>
           <li>
-            <%= link_to notification_read_path(user_notification), data: { turbo_method: :post } do %>
+            <%= link_to notification_read_path(user_notification.notification), data: { turbo_method: :post } do %>
               <%= user_notification.notification.title %>
 
             <% end %>
           </li>
         <% end %>
         <% if user_notifications.size > 3 %>
-          <li><%= link_to 'もっと見る', mypage_activities_path %></li>
+          <li><%= link_to 'もっと見る', mypage_notifications_path %></li>
         <% end %>
       <% elsif user_notifications.size == 0 %>
         <li><a>新着通知はありません</a></a></li>
         <hr>
-        <li><%= link_to 'もっと見る', mypage_activities_path %></li>
+        <li><%= link_to 'もっと見る', mypage_notifications_path %></li>
       <% end %>
     </ul>
   </div>
