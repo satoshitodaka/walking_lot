@@ -33,7 +33,7 @@ class User < ApplicationRecord
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
 
   scope :admin, -> { where(admin: true) }
-  
+
   private
     def default_avatar
       return if avatar.attached?

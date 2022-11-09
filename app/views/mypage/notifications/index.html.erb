@@ -7,11 +7,11 @@
         <div class="indicator w-full">
           <!-- indicator for new notification -->
           <% unless user_notification.read? %>
-            <span class="indicator-item badge badge-primary">new</span> 
+            <span class="indicator-item badge badge-primary">new</span>
           <% end %>
           <!-- notification card -->
           <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
-            <div class="card-body">  
+            <div class="card-body">
               <p class="card-title"><%= user_notification.notification.title %></p>
               <div class="text-right">
                 <p><%= time_ago_in_words(user_notification.created_at) %>前</p>

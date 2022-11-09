@@ -1,5 +1,4 @@
 class Mypage::ActivitiesController < Mypage::BaseController
-
   def new
     @activity = Activity.new
   end
@@ -24,7 +23,7 @@ class Mypage::ActivitiesController < Mypage::BaseController
     @activity = current_user.activities.find(params[:id])
 
     if @activity.update(activity_params)
-      
+
       redirect_to mypage_activity_path(@activity), success: 'アクティビティを更新しました'
     else
       flash.now[:danger] = 'アクティビティの更新に失敗しました'
