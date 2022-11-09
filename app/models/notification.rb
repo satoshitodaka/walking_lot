@@ -17,9 +17,22 @@ class Notification < ApplicationRecord
 
   def notify(*user)
     users = user.flatten
-    user_notifications = users.pluck(:id).map do |user_id|
-      { notification_id: id, user_id: }
+    user_notifications = users.pluck(:id).map do |user_id|{ 
+      notification_id: id,
+      user_id: ,
+      created_at: Time.zone.now,
+      updated_at: Time.zone.now,
+    }
     end
-    UserNotification.insert_all(user_notifications)
+    UserNotification.insert_all(user_notifications, record_timestamps: true)
   end
 end
+
+# notification_id: id,
+# user_id: 
+# created_at: Time.zone.now,
+# updated_at: Time.zone.now
+
+# user_notifications.each do |user_notification|
+#   puts "#{user_notification.created_at}に作成しました"
+# end
