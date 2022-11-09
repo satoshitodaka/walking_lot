@@ -1,0 +1,27 @@
+<% set_meta_tags title: '通知一覧' %>
+<div class="container mx-auto py-10 px-4">
+  <p class="text-2xl font-bold">通知一覧</p>
+  <% if @user_notifications.present? %>
+    <% @user_notifications.each do |user_notification| %>
+      <%= link_to notification_read_path(user_notification.notification), data: { turbo_method: :post } do %>
+        <div class="indicator w-full">
+          <!-- indicator for new notification -->
+          <% unless user_notification.read? %>
+            <span class="indicator-item badge badge-primary">new</span>
+          <% end %>
+          <!-- notification card -->
+          <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
+            <div class="card-body">
+              <p class="card-title"><%= user_notification.notification.title %></p>
+              <div class="text-right">
+                <p><%= time_ago_in_words(user_notification.created_at) %>前</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>お知らせはありません</p>
+  <% end %>
+</div>

@@ -25,6 +25,7 @@ services:
       - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
+    command: mysqld --default-time-zone=Asia/Tokyo
   chrome:
     image: selenium/standalone-chrome-debug:latest
     ports:

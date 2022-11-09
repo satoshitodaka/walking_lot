@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_010832) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_014000) do
   create_table 'active_storage_attachments', charset: 'utf8mb4', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -94,6 +94,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_010832) do
     t.index ['user_id'], name: 'index_lots_on_user_id'
   end
 
+  create_table 'notifications', charset: 'utf8mb4', force: :cascade do |t|
+    t.string 'title', null: false
+    t.string 'url', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'user_notifications', charset: 'utf8mb4', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'notification_id', null: false
+    t.boolean 'read', default: false, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['notification_id', 'user_id'], name: 'index_user_notifications_on_notification_id_and_user_id', unique: true
+    t.index ['notification_id'], name: 'index_user_notifications_on_notification_id'
+    t.index ['user_id'], name: 'index_user_notifications_on_user_id'
+  end
+
   create_table 'users', charset: 'utf8mb4', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'email', null: false
@@ -112,4 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_010832) do
   add_foreign_key 'activity_location_types', 'location_types'
   add_foreign_key 'lot_activities', 'activities'
   add_foreign_key 'lots', 'users'
+  add_foreign_key 'user_notifications', 'notifications'
+  add_foreign_key 'user_notifications', 'users'
 end
