@@ -11,6 +11,7 @@
 #                                     lots POST   /lots(.:format)                                                                                   lots#create
 #                                  new_lot GET    /lots/new(.:format)                                                                               lots#new
 #                                      lot GET    /lots/:id(.:format)                                                                               lots#show
+#                     mypage_notifications GET    /mypage/notifications(.:format)                                                                   mypage/notifications#index
 #                        mypage_activities GET    /mypage/activities(.:format)                                                                      mypage/activities#index
 #                                          POST   /mypage/activities(.:format)                                                                      mypage/activities#create
 #                      new_mypage_activity GET    /mypage/activities/new(.:format)                                                                  mypage/activities#new
@@ -24,6 +25,7 @@
 #                                          PATCH  /mypage/account(.:format)                                                                         mypage/accounts#update
 #                                          PUT    /mypage/account(.:format)                                                                         mypage/accounts#update
 #                                          DELETE /mypage/account(.:format)                                                                         mypage/accounts#destroy
+#                        notification_read POST   /notifications/:notification_id/read(.:format)                                                    notifications/reads#create
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
 #                                    rules GET    /rules(.:format)                                                                                  static_pages#rules
@@ -83,8 +85,13 @@ Rails.application.routes.draw do
 
   resources :lots, only: %i[new create show]
   namespace :mypage do
+    resources :notifications, only: %i[index]
     resources :activities
     resource :account, only: %i[show edit update destroy]
+  end
+
+  resources :notifications, only: [] do
+    resource :read, only: %i[create], module: :notifications
   end
 
   get '/about', to: 'static_pages#about'

@@ -19,6 +19,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :lots, dependent: :destroy
   has_many :activities, dependent: :nullify
+  has_many :user_notifications, dependent: :destroy
+  has_many :notifications, through: :user_notifications
   has_one_attached :avatar
 
   before_create :default_avatar
@@ -29,6 +31,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
+
+  scope :admin, -> { where(admin: true) }
 
   private
     def default_avatar

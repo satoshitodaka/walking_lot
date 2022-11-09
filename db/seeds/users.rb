@@ -9,3 +9,13 @@ puts 'Start inserting seed "users"...'
   )
   puts "\"#{user.name}\" has created!"
 end
+
+puts 'Start inserting seed "admin user"...'
+admin_user = User.create!(
+  name: Faker::Name.name,
+  email: 'satoshitodaka0705@gmail.com',
+  admin: true,
+  password: 'password',
+  password_confirmation: 'password'
+)
+puts "\"#{admin_user.name}\" has created!"
