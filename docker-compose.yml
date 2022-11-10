@@ -36,7 +36,7 @@ services:
   sidekiq:
     build: .
     environment:
-      REDIS_URL: redis://6379
+      REDIS_URL: redis://redis:6379
     volumes:
       - .:/walking_lot:cached
       - bundle:/usr/local/bundle

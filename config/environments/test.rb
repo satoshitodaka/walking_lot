@@ -62,4 +62,6 @@ Rails.application.configure do
   config.assets.css_compressor = nil
 
   config.action_mailer.default_url_options = Settings.default_url_options.to_h
+
+  config.active_job.queue_adapter = :test
 end

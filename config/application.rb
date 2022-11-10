@@ -48,5 +48,7 @@ module WalkingLot
         request_specs: false,
         model_specs: true
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
