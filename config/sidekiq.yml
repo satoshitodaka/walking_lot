@@ -1,0 +1,5 @@
+:concurrency: 5
+:queues:
+  - default
+  - active_strage_analysis
+  - sctive_strage_purge
