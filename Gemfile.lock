@@ -192,6 +192,15 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -394,6 +403,7 @@ DEPENDENCIES
   faker
   jbuilder
   jsbundling-rails
+  letter_opener_web (~> 2.0)
   meta-tags
   mysql2 (~> 0.5)
   puma (~> 5.0)

@@ -25,12 +25,3 @@ class Notification < ApplicationRecord
     UserNotification.insert_all(user_notifications, record_timestamps: true)
   end
 end
-
-# notification_id: id,
-# user_id: 
-# created_at: Time.zone.now,
-# updated_at: Time.zone.now
-
-# user_notifications.each do |user_notification|
-#   puts "#{user_notification.created_at}に作成しました"
-# end
