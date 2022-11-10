@@ -1,3 +1,30 @@
 <% set_meta_tags title: 'アクティビティ管理' %>
-<h1>Mypage::Activities#index</h1>
-<p>Find me in app/views/mypage/activities/index.html.erb</p>
+<div class="container mx-auto px-4 py-10 max-w-lg">
+  <p class="text-2xl font-bold mb-5">アクティビティ管理</p>
+  
+  <p class="text-lg font-bold mb-5">アクティビティを作る</p>
+  <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
+
+  <p class="text-lg font-bold mb-5">作成したアクティビティ</p>
+  <% if @activities.present? %>
+    <% @activities.each do |activity| %>
+      <%= link_to mypage_activity_path(activity) do %>
+        <!-- lot card -->
+        <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
+          <div class="card-body">
+            <p class="card-title"><%= activity.content %></p>
+            <% activity.location_types.each do |location_type| %>
+              <span class="badge badge-lg"><%= location_type.name %></span>
+            <% end %>
+            <span class="badge badge-lg"><%= activity.released %></span>
+            <div class="text-right">
+              <p><%= time_ago_in_words(activity.created_at) %>前</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>作成したアクティビティはありません</p>
+  <% end %>
+</div>

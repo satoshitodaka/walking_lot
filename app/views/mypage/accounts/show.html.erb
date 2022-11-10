@@ -3,10 +3,10 @@
   <p class="text-2xl font-bold mb-5">マイページ</p>
   <div class="mb-5">
     <%= render 'user' %>
-  <div>
-  <p class="text-lg font-bold mb-5">アクティビティを作る</p>
-    <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
   </div>
+  <p class="text-lg font-bold mb-5">アクティビティを作る</p>
+  <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
+
   <p class="text-lg font-bold mb-5">散歩くじの履歴</p>
   <% if @lots.present? %>
     <% @lots.each do |lot| %>
