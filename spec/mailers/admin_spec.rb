@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe AdminMailer, type: :mailer do
   describe 'アクティビティ新規作成時' do
