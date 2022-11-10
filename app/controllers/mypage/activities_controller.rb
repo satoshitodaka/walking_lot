@@ -8,6 +8,7 @@ class Mypage::ActivitiesController < Mypage::BaseController
 
     if @activity.save
       create_notification_about_activity_created(@activity)
+      AdminMailer.with(user: @activity.user, activity: @activity).new_activity.deliver_later
       redirect_to mypage_activity_path(@activity), success: 'アクティビティを作成しました。公開まで少々お待ちください'
     else
       flash.now[:danger] = 'アクティビティの作成に失敗しました'
