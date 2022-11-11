@@ -1,7 +1,7 @@
 <%= form_with model: lot, data: { controller: 'set-start-point' } do |f| %>
   <%= render 'shared/error_messages', object: lot %>
   <div class="form-control my-5">
-    <%= f.label :location_type, class: "label" %>
+    <%= f.label :location_type, class: 'label' %>
     <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: '場所のタイプを選択してください' }, { class: 'select select-bordered w-full mb-5' } %>
   </div>
 
@@ -21,10 +21,10 @@
         autocomplete="off">
 
   <div class="form-control">
-    <%= f.label :start_point_name, class: "label" %>
+    <%= f.label :start_point_name, class: 'label' %>
     <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5', placeholder: '自動入力されます', data: { set_start_point_target: 'startpointname' } %>
   </div>
-  
+
   <%= f.text_field :start_point_address, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
   <%= f.text_field :start_point_latitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
   <%= f.text_field :start_point_longitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
@@ -34,7 +34,7 @@
 <% end %>
 
 <!-- 登録のヒントのモーダル -->
-<input type="checkbox" id="my-modal" class="modal-toggle" />
+<input type="checkbox" id="my-modal" class="modal-toggle">
 <div class="modal">
   <div class="modal-box">
     <h3 class="font-bold text-lg">いずれかの方法で出発地点を登録できます</h3>
