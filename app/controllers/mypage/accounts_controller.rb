@@ -1,6 +1,7 @@
 class Mypage::AccountsController < Mypage::BaseController
   def show
     @user = User.find(current_user.id)
+    @lots = @user.lots
   end
 
   def edit

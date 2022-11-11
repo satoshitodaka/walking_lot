@@ -1,8 +1,36 @@
 <% set_meta_tags title: 'アクティビティ詳細' %>
-<div class="container mx-auto px-4 py-10 prose">
-  <h2><%= @activity.content %></h2>
+<div class="container mx-auto px-4 py-10 max-w-lg">
+  <p class="text-2xl font-bold mb-5">アクティビティ詳細</p>
+  <%= image_tag "activities_images/#{@activity.location_types.first.location_type}" %>
+  <div class="my-4">
+    <p class="text-xl font-bold mb-5"><%= @activity.content %></p>
+  </div>
 
-  <% @activity.location_types.each do |location_type| %>
-    <span class="badge badge-lg"><%= location_type.name %></span>
-  <% end %>
+  <!-- LocationType -->
+  <div class="flex justify-between">
+    <p class="text-base font-bold mb-5">場所のタイプ</p>
+    <% @activity.location_types.each do |location_type| %>
+      <span class="badge badge-lg"><%= location_type.name %></span>
+    <% end %>
+  </div>
+
+  <!-- Approved status -->
+  <div class="flex justify-between">
+    <p class="text-base font-bold mb-5">承認状況</p>
+    <% if @activity.approved? %>
+      <span class="badge badge-lg">承認済</span>
+    <% else %>
+      <span class="badge badge-lg">未承認</span>
+    <% end %>
+  </div>
+
+  <!-- Released status -->
+  <div class="flex justify-between">
+    <p class="text-base font-bold mb-5">公開状況</p>
+    <% if @activity.released? %>
+      <span class="badge badge-lg">公開済</span>
+    <% else %>
+      <span class="badge badge-lg">未公開</span>
+    <% end %>
+  </div>
 </div>
