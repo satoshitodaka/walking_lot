@@ -1,22 +1,14 @@
 <%= form_with model: lot, data: { controller: 'set-start-point' } do |f| %>
   <%= render 'shared/error_messages', object: lot %>
-  <div class="form-control mb-5">
-    <%= f.label :location_type %>
+  <div class="form-control my-5">
+    <%= f.label :location_type, class: 'label' %>
     <%= f.collection_select :location_type_id, LocationType.all, :id, :name, { prompt: '場所のタイプを選択してください' }, { class: 'select select-bordered w-full mb-5' } %>
   </div>
 
-  <p>出発地点を登録してください</p>
-  <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mb-5">
-    <div class="collapse-title font-medium">
-      登録のヒント
-    </div>
-    <div class="collapse-content">
-      <p>いずれかの方法で出発地点を登録できます</p>
-      <ul>
-        <li>出発地点をクリックする</li>
-        <li>「現在地から歩く」をクリックする</li>
-        <li>出発地を検索する</li>
-      </ul>
+  <div class="flex justify-between mb-5">
+    <p class="label">出発地点を登録してください</p>
+    <div class="order-last">
+      <label for="my-modal" class="btn btn-info">登録のヒント</label>
     </div>
   </div>
 
@@ -27,17 +19,34 @@
         type="text"
         placeholder="検索"
         autocomplete="off">
+
   <div class="form-control">
-    <%= f.label :start_point_name %>
-    <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointname' } %>
+    <%= f.label :start_point_name, class: 'label' %>
+    <%= f.text_field :start_point_name, class: 'input input-bordered input-primary w-full mb-5', placeholder: '自動入力されます', data: { set_start_point_target: 'startpointname' } %>
   </div>
-  <div class="form-control">
-    <%= f.label :start_point_address %>
-    <%= f.text_field :start_point_address, class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
-  </div>
+
+  <%= f.text_field :start_point_address, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', data: { set_start_point_target: 'startpointaddress' } %>
   <%= f.text_field :start_point_latitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'latitude' } %>
   <%= f.text_field :start_point_longitude, type: 'hidden', class: 'input input-bordered input-primary w-full mb-5', readonly: true, data: { set_start_point_target: 'longitude' } %>
   <div>
-    <%= f.submit class: 'btn btn-primary btn-block' %>
+    <%= f.submit 'くじを引く', class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>
+
+<!-- 登録のヒントのモーダル -->
+<input type="checkbox" id="my-modal" class="modal-toggle">
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">いずれかの方法で出発地点を登録できます</h3>
+    <div class="prose">
+      <ul>
+        <li>出発地点をクリックする</li>
+        <li>「現在地から歩く」をクリックする</li>
+        <li>出発地を検索する</li>
+      </ul>
+    </div>
+    <div class="modal-action">
+      <label for="my-modal" class="btn btn-primary">OK</label>
+    </div>
+  </div>
+</div>

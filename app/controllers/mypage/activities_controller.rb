@@ -37,6 +37,7 @@ class Mypage::ActivitiesController < Mypage::BaseController
   end
 
   def index
+    @activities = current_user.activities
   end
 
   def destroy
