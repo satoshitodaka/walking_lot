@@ -9,10 +9,10 @@ class LotsController < ApplicationController
     else
       @lot = Lot.new(lot_params)
     end
-    
+
     if @lot.valid?
       @lot.get_neaby_locations
-      
+
       if @lot.neaby_locations['status'] == 'OK'
         @lot.set_destination
         @lot.save

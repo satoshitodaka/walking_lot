@@ -58,7 +58,7 @@ class Lot < ApplicationRecord
     self.destination_longitude = destination_infomations['geometry']['location']['lng']
     self.photo_url = destination_infomations['photos'][0]['photo_reference']
   end
-  
+
   private
     def create_lot_activity
       LotActivity.create(
