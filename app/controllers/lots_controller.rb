@@ -9,9 +9,18 @@ class LotsController < ApplicationController
     else
       @lot = Lot.new(lot_params)
     end
-
-    if @lot.save
-      redirect_to lot_path(@lot), success: 'くじを作成しました'
+    
+    if @lot.valid?
+      @lot.get_neaby_locations
+      
+      if @lot.neaby_locations['status'] == 'OK'
+        @lot.set_destination
+        @lot.save
+        redirect_to lot_path(@lot), success: 'くじを作成しました'
+      elsif @lot.neaby_locations['status'] = 'ZERO_RESULTS'
+        flash.now[:info] = '近くにスポットがありませんでした。条件を変えてもう一度引いてください。'
+        render :new, status: :unprocessable_entity
+      end
     else
       render :new, status: :unprocessable_entity
     end

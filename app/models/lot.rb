@@ -37,36 +37,29 @@ class Lot < ApplicationRecord
   validates :start_point_latitude, presence: true
   validates :start_point_longitude, presence: true
 
-  before_create :get_neaby_locations
-  before_create :set_neaby_locations
-  before_create :set_destination
   after_create :create_lot_activity
 
+  def get_neaby_locations
+    google_map_api_key = Rails.application.credentials.google_map_api_key
+    start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
+    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&type=#{ self.location_type.location_type }&language=ja&opennow&key=#{ google_map_api_key }"
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    self.neaby_locations = JSON.parse(response)
+  end
+
+  def set_destination
+    order_number = Random.rand(1 .. 18)
+    destination_infomations = self.neaby_locations['results'][order_number]
+
+    self.destination_name = destination_infomations['name']
+    self.destination_address = destination_infomations['vicinity']
+    self.destination_latitude = destination_infomations['geometry']['location']['lat']
+    self.destination_longitude = destination_infomations['geometry']['location']['lng']
+    self.photo_url = destination_infomations['photos'][0]['photo_reference']
+  end
+  
   private
-    def get_neaby_locations
-      google_map_api_key = Rails.application.credentials.google_map_api_key
-      start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
-      url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&type=#{ self.location_type.location_type }&language=ja&opennow&key=#{ google_map_api_key }"
-      uri = URI.parse(url)
-      response = Net::HTTP.get(uri)
-      JSON.parse(response)
-    end
-
-    def set_neaby_locations
-      self.neaby_locations = get_neaby_locations
-    end
-
-    def set_destination
-      order_number = Random.rand(1 .. 18)
-      destination_infomations = self.neaby_locations['results'][order_number]
-
-      self.destination_name = destination_infomations['name']
-      self.destination_address = destination_infomations['vicinity']
-      self.destination_latitude = destination_infomations['geometry']['location']['lat']
-      self.destination_longitude = destination_infomations['geometry']['location']['lng']
-      self.photo_url = destination_infomations['photos'][0]['photo_reference']
-    end
-
     def create_lot_activity
       LotActivity.create(
         lot_id: self.id,
