@@ -104,4 +104,6 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
     mount Sidekiq::Web, at: '/sidekiq'
   end
+
+  get '*path', to: 'application#render_404'
 end

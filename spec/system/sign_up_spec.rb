@@ -16,6 +16,7 @@ RSpec.describe 'ユーザー登録', type: :system do
 
     context '入力情報が正しい場合' do
       it 'ユーザー登録ができる' do
+        Capybara.raise_server_errors = false
         visit '/signup'
         fill_in 'ユーザー名', with: 'さんぽ　たろう'
         fill_in 'メールアドレス', with: 'exaple@walikin_lot.com'

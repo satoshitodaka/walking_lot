@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       'line': '#06C575',
       'twitter': '#1DA1F2',
+      'white': '#FFFFFF'
     },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],

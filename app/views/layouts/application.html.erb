@@ -18,8 +18,8 @@
   <body>
     <div class="flex flex-col min-h-screen">
       <%= render 'shared/header' %>
-      <%= render 'shared/flash/flash_messages' %>
       <div class="grow mt-16 pb-12">
+        <%= render 'shared/flash/flash_messages' %>
         <%= yield %>
       </div>
       <%= render 'shared/footer' %>
