@@ -20,6 +20,8 @@ services:
     environment:
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
       REDIS_URL: redis://redis:6379
+      SIDEKIQ_ADMIN_BASIC_AUTH_USER: sidekiq
+      SIDEKIQ_ADMIN_BASIC_AUTH_PASSWORD: password
   db:
     image: mysql:5.7.33
     environment:
