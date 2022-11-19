@@ -18,6 +18,7 @@ RSpec.describe 'ログイン', type: :system do
 
     context '入力内容が正しい場合' do
       it 'ログインができること' do
+        Capybara.raise_server_errors = false
         visit '/login'
         within '#login-form' do
           fill_in 'メールアドレス', with: user.email
@@ -34,6 +35,7 @@ RSpec.describe 'ログイン', type: :system do
       login_as(user)
     end
     it 'ログアウトできること' do
+      Capybara.raise_server_errors = false
       find('#header-avatar-dropdown').click
       accept_confirm { click_on 'ログアウト' }
       expect(page).to have_content 'ログアウトしました'
