@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: walking_lot_production
-  username: walking_lot
-  password: <%= ENV["WALKING_LOT_DATABASE_PASSWORD"] %>
+  database: <%= ENV['MYSQL_DATABASE'] %>
+  url: <%= ENV['MYSQL_URL'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
