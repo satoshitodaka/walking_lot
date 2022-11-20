@@ -1,0 +1,7 @@
+require './db/seeds/development/activities'
+require './db/seeds/development/activitiy_location_types'
+require './db/seeds/development/location_types'
+require './db/seeds/development/lots'
+require './db/seeds/development/notifications'
+require './db/seeds/development/user_notifications'
+require './db/seeds/development/users'

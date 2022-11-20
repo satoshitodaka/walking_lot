@@ -100,10 +100,11 @@ Rails.application.routes.draw do
   get '/tips_to_enjoy', to: 'static_pages#tips_to_enjoy'
 
   if Rails.env.development?
-    require 'sidekiq/web'
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
-    mount Sidekiq::Web, at: '/sidekiq'
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
 
   get '*path', to: 'application#render_404'
 end
