@@ -1,4 +1,5 @@
 require './db/seeds/production/location_types'
+require './db/seeds/production/users'
 require './db/seeds/production/activities/anywhere'
 require './db/seeds/production/activities/bakery'
 require './db/seeds/production/activities/book_store'
