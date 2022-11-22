@@ -8,6 +8,9 @@
   <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
 
   <p class="text-lg font-bold mb-5">散歩くじの履歴</p>
+  
+  <%= render 'search_form' %>
+
   <% if @lots.present? %>
     <% @lots.each do |lot| %>
       <%= link_to lot_path(lot) do %>
@@ -23,6 +26,6 @@
       <% end %>
     <% end %>
   <% else %>
-    <p>引いたくじはありません</p>
+    <p>くじはありません</p>
   <% end %>
 </div>

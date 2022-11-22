@@ -1,0 +1,6 @@
+<%= search_form_for @q, url: mypage_activities_path do |f| %>
+  <div class="flex mb-5">
+    <%= f.search_field :content_cont, class: 'input input-bordered input-primary w-full max-w-xs', placeholder: 'キーワード' %>
+    <%= f.submit '検索', class: 'btn btn-primary' %>
+  </div>
+<% end %>

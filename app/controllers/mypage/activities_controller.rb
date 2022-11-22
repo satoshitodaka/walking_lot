@@ -37,7 +37,8 @@ class Mypage::ActivitiesController < Mypage::BaseController
   end
 
   def index
-    @activities = current_user.activities
+    @q = current_user.activities.ransack(params[:q])
+    @activities = @q.result(distinct: true)
   end
 
   def destroy
