@@ -52,6 +52,9 @@ gem 'activestorage-validator'
 # Worker
 gem 'sidekiq'
 
+# 検索機能
+gem 'ransack'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
