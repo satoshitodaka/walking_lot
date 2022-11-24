@@ -2,7 +2,7 @@ class Mypage::AccountsController < Mypage::BaseController
   def show
     @user = User.find(current_user.id)
     @q = @user.lots.ransack(params[:q])
-    @lots = @q.result(distinct: true)
+    @pagy, @lots = pagy(@q.result(distinct: true))
   end
 
   def edit

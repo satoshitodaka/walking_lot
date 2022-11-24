@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   add_flash_types :primary, :success, :info, :warning, :danger
 
   def not_authenticated
