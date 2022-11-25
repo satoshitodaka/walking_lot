@@ -6,25 +6,35 @@
   <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
 
   <p class="text-lg font-bold mb-5">作成したアクティビティ</p>
+
+  <%= render 'search_form' %>
+
   <% if @activities.present? %>
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
+
     <% @activities.each do |activity| %>
       <%= link_to mypage_activity_path(activity) do %>
         <!-- lot card -->
         <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
           <div class="card-body">
             <p class="card-title"><%= activity.content %></p>
-            <% activity.location_types.each do |location_type| %>
-              <span class="badge badge-lg"><%= location_type.name %></span>
-            <% end %>
-            <span class="badge badge-lg"><%= activity.released %></span>
             <div class="text-right">
-              <p><%= time_ago_in_words(activity.created_at) %>前</p>
+              <% activity.location_types.each do |location_type| %>
+                <span class="badge badge-outline badge-md"><%= location_type.name %></span>
+              <% end %>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
   <% else %>
-    <p>作成したアクティビティはありません</p>
+    <p>アクティビティはありません</p>
   <% end %>
 </div>
