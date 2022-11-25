@@ -1,7 +1,9 @@
 class Mypage::AccountsController < Mypage::BaseController
   def show
     @user = User.find(current_user.id)
-    @lots = @user.lots
+    # 作成したくじの一覧
+    @q = @user.lots.ransack(params[:q])
+    @pagy, @lots = pagy(@q.result(distinct: true).order(created_at: :desc))
   end
 
   def edit

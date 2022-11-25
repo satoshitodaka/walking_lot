@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="cupcake">
+<html data-theme="emerald">
   <head>
     <%= display_meta_tags(default_meta_tags) %>
     <%= favicon_link_tag('favicon.ico') %>
@@ -18,7 +18,7 @@
   <body>
     <div class="flex flex-col min-h-screen">
       <%= render 'shared/header' %>
-      <div class="grow mt-16 pb-12">
+      <div class="grow mt-16">
         <%= render 'shared/flash/flash_messages' %>
         <%= yield %>
       </div>

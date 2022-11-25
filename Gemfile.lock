@@ -258,6 +258,8 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
+    pagy (5.10.1)
+      activesupport
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -305,6 +307,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis-client (0.11.2)
       connection_pool
     regexp_parser (2.6.1)
@@ -432,10 +438,12 @@ DEPENDENCIES
   letter_opener_web (~> 2.0)
   meta-tags
   mysql2 (~> 0.5)
+  pagy (~> 5.10)
   puma (~> 5.0)
   rails (~> 7.0.4)
   rails-i18n (~> 7.0.0)
   rails_admin (~> 3.0)
+  ransack
   rspec-rails
   rubocop
   rubocop-rails

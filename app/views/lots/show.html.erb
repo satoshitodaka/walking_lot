@@ -4,26 +4,50 @@
 
   <!-- Card -->
   <div class="card bg-base-100 shadow-xl mb-5">
+    <!--Place photo-->
     <figure><%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{@lot.photo_url}&key=#{Rails.application.credentials.google_map_api_key}" %></figure>
     <div class="flex justify-end items-center p-1">
       <span class="text-xs font-light">Powered by</span>
       <%= image_tag 'google_on_white.png', size: '60x60' %>
     </div>
     <div class="card-body">
-      <h2 class="card-title">
-       <%= @lot.destination_name %>
-      </h2>
-      <p><%= @lot.destination_address %></p>
+      <!--Destination-->
+      <div class="flex items-center">
+        <div class="toast toast-start toast-middle">
+          <div class="alert alert-success">
+            <div class="font-bold">
+              <span>行先</span>
+            </div>
+          </div>
+        </div>
+        <div class="mx-3">
+          <h2 class="card-title"><%= @lot.destination_name %></h2>
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <circle cx="12" cy="11" r="3"></circle>
+              <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
+            </svg>
+            <p class="prose text-gray-400 text-sm"><%= @lot.destination_address %></p>
+          </div>
+        </div>
+      </div>
+
+      <!--Activity-->
+      <div class="flex items-center">
+        <div class="toast toast-start toast-middle">
+          <div class="alert alert-warning">
+            <div class="font-bold">
+              <span>目的</span>
+            </div>
+          </div>
+        </div>
+        <h2 class="card-title mx-3">
+          <%= @lot.activity.content %>
+        </h2>
+      </div>
       <div class="card-actions justify-end">
         <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
-      </div>
-      <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-5">
-        <div class="collapse-title text-xs font-medium">
-          アクティビティにもチャレンジしよう！
-        </div>
-        <div class="collapse-content">
-          <p class="text-lg font-bold"><%= @lot.activity.content %></p>
-        </div>
       </div>
     </div>
   </div>
@@ -41,7 +65,7 @@
   <!-- GoogleMapで開くボタン -->
   <p class="text-lg font-bold label">ルートを確認する</p>
   <div class="flex-shrink-0 mb-5">
-    <%= link_to "https://www.google.com/maps/dir/?api=1&origin=#{@lot.start_point_latitude},#{@lot.start_point_longitude}&destination=#{@lot.destination_latitude},#{@lot.destination_longitude}&travelmode=walking", class: 'btn btn-primary btn-block', target: '_blank', rel: 'noopener noreferrer' do %>
+    <%= link_to "https://www.google.com/maps/dir/?api=1&origin=#{@lot.start_point_latitude},#{@lot.start_point_longitude}&destination=#{@lot.destination_latitude},#{@lot.destination_longitude}&travelmode=walking", class: 'btn btn-info btn-block', target: '_blank', rel: 'noopener noreferrer' do %>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 50 50"><path d="M9.835 37.67a51.38 51.38 0 0 1 4.007 5.91c1.022 1.938 1.448 3.252 2.195 5.587.458 1.29.872 1.675 1.762 1.675.97 0 1.41-.655 1.75-1.668.706-2.205 1.26-3.888 2.134-5.478 1.715-3.07 3.846-5.798 5.94-8.42.567-.742 4.232-5.065 5.882-8.476 0 0 2.028-3.747 2.028-8.98 0-4.895-2-8.29-2-8.29l-5.758 1.542-3.497 9.21-.865 1.27-.173.23-.23.288-.404.46-.577.577-3.114 2.537-7.785 4.495z" fill="#34a853" />
         <path d="M1.8 26.17c1.9 4.34 5.564 8.155 8.043 11.503L23.01 22.076s-1.855 2.426-5.22 2.426c-3.748 0-6.776-2.993-6.776-6.767 0-2.588 1.557-4.366 1.557-4.366l-8.938 2.395z" fill="#fbbc04" />
         <path d="M23.157.792c4.373 1.41 8.116 4.37 10.38 8.735l-10.523 12.54s1.557-1.81 1.557-4.382c0-3.862-3.252-6.747-6.765-6.747-3.322 0-5.23 2.422-5.23 2.422v-7.9z" fill="#4285f4" />
@@ -78,7 +102,7 @@
 
   <!-- 再度くじを引く -->
   <p class="text-lg font-bold label">別の場所に散歩する</p></p>
-  <div class="flex-shrink-0">
+  <div class="pb-12">
     <%= link_to new_lot_path, class: 'btn btn-primary btn-block' do %>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shoe" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

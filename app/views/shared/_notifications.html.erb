@@ -14,18 +14,14 @@
           <li>
             <%= link_to notification_read_path(user_notification.notification), data: { turbo_method: :post } do %>
               <%= user_notification.notification.title %>
-
             <% end %>
           </li>
         <% end %>
-        <% if user_notifications.size > 3 %>
-          <li><%= link_to 'もっと見る', mypage_notifications_path %></li>
-        <% end %>
       <% elsif user_notifications.size == 0 %>
         <li><a>新着通知はありません</a></a></li>
-        <hr>
-        <li><%= link_to 'もっと見る', mypage_notifications_path %></li>
       <% end %>
+      <hr>
+      <li><%= link_to '通知一覧', mypage_notifications_path %></li>
     </ul>
   </div>
 <% end %>

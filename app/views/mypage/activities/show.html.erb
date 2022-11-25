@@ -7,10 +7,9 @@
   </div>
 
   <!-- LocationType -->
-  <div class="flex justify-between">
-    <p class="text-base font-bold mb-5">場所のタイプ</p>
+  <div class="text-right mb-5">
     <% @activity.location_types.each do |location_type| %>
-      <span class="badge badge-lg"><%= location_type.name %></span>
+      <span class="badge badge-md"><%= location_type.name %></span>
     <% end %>
   </div>
 
@@ -18,9 +17,9 @@
   <div class="flex justify-between">
     <p class="text-base font-bold mb-5">承認状況</p>
     <% if @activity.approved? %>
-      <span class="badge badge-lg">承認済</span>
+      <span class="badge badge-primary badge-md">承認済</span>
     <% else %>
-      <span class="badge badge-lg">未承認</span>
+      <span class="badge badge-outline badge-md">未承認</span>
     <% end %>
   </div>
 
@@ -28,9 +27,13 @@
   <div class="flex justify-between">
     <p class="text-base font-bold mb-5">公開状況</p>
     <% if @activity.released? %>
-      <span class="badge badge-lg">公開済</span>
+      <span class="badge badge-primary badge-md">公開済</span>
     <% else %>
-      <span class="badge badge-lg">未公開</span>
+      <span class="badge badge-outline badge-md">未公開</span>
     <% end %>
+  </div>
+
+  <div class="pb-12">
+    <%= link_to '編集する', edit_mypage_activity_path, class: 'btn btn-primary btn-block' %>
   </div>
 </div>

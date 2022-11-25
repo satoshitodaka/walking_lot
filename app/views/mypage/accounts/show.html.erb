@@ -4,17 +4,32 @@
   <div class="mb-5">
     <%= render 'user' %>
   </div>
-  <p class="text-lg font-bold mb-5">アクティビティを作る</p>
-  <%= link_to 'アクティビティを作る', new_mypage_activity_path, class: 'btn btn-primary btn-block mb-5' %>
+  <p class="text-lg font-bold mb-5">アクティビティ管理</p>
+  <%= link_to 'アクティビティ管理画面', mypage_activities_path, class: 'btn btn-primary btn-block mb-5' %>
 
   <p class="text-lg font-bold mb-5">散歩くじの履歴</p>
+
+  <%= render 'search_form' %>
+
   <% if @lots.present? %>
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
     <% @lots.each do |lot| %>
       <%= link_to lot_path(lot) do %>
         <!-- lot card -->
         <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
           <div class="card-body">
-            <p class="card-title"><%= lot.destination_name %>で「<%= lot.activity.content %>」にチャレンジする</p>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <circle cx="12" cy="11" r="3"></circle>
+                <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
+              </svg>
+              <p class="card-title"><%= lot.destination_name %></p>
+            </div>
+            <p></p>「<%= lot.activity.content %>」にチャレンジする！</p>
             <div class="text-right">
               <p><%= time_ago_in_words(lot.created_at) %>前</p>
             </div>
@@ -22,7 +37,11 @@
         </div>
       <% end %>
     <% end %>
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
   <% else %>
-    <p>引いたくじはありません</p>
+    <p>くじはありません</p>
   <% end %>
 </div>
