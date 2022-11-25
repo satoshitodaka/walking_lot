@@ -27,37 +27,28 @@
         <% end %>
       </div>
     </div>
-    <!-- menu for desktop -->
-    <ul class="menu menu-horizontal p-0 hidden lg:flex">
-      <li tabindex="0">
-        <a>
-          散歩くじについて
-          <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-        </a>
-        <ul class="p-2 bg-base-100">
-          <li><%= link_to '使い方', about_path %></li>
-          <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
-        </ul>
-      </li>
-      <!-- for login User -->
-      <% if logged_in? %>
-        <li tabindex="0" id='header-avatar-dropdown'>
-          <a>
-            ユーザー
-            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-          </a>
-          <ul class="p-2 bg-base-100">
-            <li><%= link_to 'マイページ', mypage_account_path %></li>
-            <li><%= link_to 'アクティビティ管理', mypage_activities_path %></li>
-            <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %></li>
+    <!-- about app for desktop -->
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">散歩くじについて</label>
+          <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+            <li><%= link_to '使い方', about_path %></li> 
+            <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
+            <li><%= link_to '利用規約', rules_path %></li>
+            <li><%= link_to 'プライバシーポリシー', privacy_path %></li>
+            <li><%= link_to 'お問い合わせ', 'https://forms.gle/JKh3j2EQ2hK8dioh8' %></li>
           </ul>
-        </li>
+        </div>
+
       <!-- for unless login User -->
-      <% else %>
-        <li><%= link_to 'ユーザー登録', signup_path %></li>
-        <li><%= link_to 'ログイン', login_path %></li>
+      <% unless logged_in? %>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">ユーザー</label>
+          <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+            <li><%= link_to 'ユーザー登録', signup_path %></li> 
+            <li><%= link_to 'ログイン', login_path %></li>
+          </ul>
+        </div>
       <% end %>
-    </ul>
     <!-- Notification Icon -->
     <% if logged_in? %>
       <%= render 'shared/notifications', user_notifications: current_user.user_notifications.where(read: false).includes(:notification).limit(3) %>
@@ -66,7 +57,7 @@
     <% if logged_in? %>
       <!-- for login User -->
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
           <div class="avatar">
             <div class="w-11 rounded-full">
               <%= image_tag current_user.avatar %>
@@ -76,22 +67,33 @@
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to 'マイページ', mypage_account_path %></li>
           <li><%= link_to 'アクティビティ管理', mypage_activities_path %></li>
-          <li><%= link_to '使い方', about_path %></li>
-          <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
+          <li class="lg:hidden"><%= link_to '使い方', about_path %></li>
+          <li class="lg:hidden"><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
           <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %></li>
+          <li class="lg:hidden"><%= link_to '利用規約', rules_path %></li>
+          <li class="lg:hidden"><%= link_to 'プライバシーポリシー', privacy_path %></li>
+          <li class="lg:hidden"><%= link_to 'お問い合わせ', 'https://forms.gle/JKh3j2EQ2hK8dioh8' %></li>
         </ul>
       </div>
     <% else %>
       <!-- for unless login user -->
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to 'ユーザー登録', signup_path %></li>
           <li><%= link_to 'ログイン', login_path %></li>
           <li><%= link_to '使い方', about_path %></li>
           <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
+          <li class="lg:hidden"><%= link_to '利用規約', rules_path %></li>
+          <li class="lg:hidden"><%= link_to 'プライバシーポリシー', privacy_path %></li>
+          <li class="lg:hidden"><%= link_to 'お問い合わせ', 'https://forms.gle/JKh3j2EQ2hK8dioh8' %></li>
         </ul>
       </div>
     <% end %>
