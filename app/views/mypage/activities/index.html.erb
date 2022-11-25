@@ -14,7 +14,7 @@
     <div class="flex justify-center mb-5">
       <%== pagy_nav(@pagy) %>
     </div>
-    
+
     <% @activities.each do |activity| %>
       <%= link_to mypage_activity_path(activity) do %>
         <!-- lot card -->
@@ -38,5 +38,3 @@
     <p>アクティビティはありません</p>
   <% end %>
 </div>
-
-
