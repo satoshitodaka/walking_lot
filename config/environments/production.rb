@@ -92,13 +92,13 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    :password => '<SENDGRID_API_KEY>', # This is the secret sendgrid API key which was issued during API key creation
-    :domain => 'walking-lot.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    password: '<SENDGRID_API_KEY>', # This is the secret sendgrid API key which was issued during API key creation
+    domain: 'walking-lot.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   config.action_mailer.default_url_options = Settings.default_url_options.to_h
