@@ -1,6 +1,5 @@
 class AdminMailer < ApplicationMailer
-  default to: -> { User.admin.pluck(:email) },
-          from: 'admin-notification@walking-lot.com'
+  default to: -> { User.admin.pluck(:email) }
 
   def new_activity
     @user = params[:user]
