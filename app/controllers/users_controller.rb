@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
+      UserMailer.with(user: @user).welcome_email.deliver_later
       redirect_to root_path, success: 'ユーザー登録が完了しました'
     else
       flash.now[:danger] = 'ユーザー作成に失敗しました'
