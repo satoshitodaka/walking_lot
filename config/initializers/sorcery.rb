@@ -223,12 +223,15 @@ Rails.application.config.sorcery.configure do |config|
   # config.salesforce.scope = "full"
   # config.salesforce.user_info_mapping = {:email => "email"}
 
-  # config.line.key = ""
-  # config.line.secret = ""
-  # config.line.callback_url = "http://mydomain.com:3000/oauth/callback?provider=line"
-  # config.line.scope = "profile"
-  # config.line.bot_prompt = "normal"
-  # config.line.user_info_mapping = {name: 'displayName'}
+  config.line.key = Rails.application.credentials.dig(:line, :channel_id)
+  config.line.secret = Rails.application.credentials.dig(:line, :channel_secret)
+  config.line.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=line"
+  config.line.scope = "profile"
+  config.line.bot_prompt = "normal"
+  config.line.user_info_mapping = {
+    name: 'displayName',
+    email: 'email'
+  }
 
 
   # For information about Discord API
