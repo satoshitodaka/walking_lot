@@ -30,6 +30,8 @@
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
 #                                    rules GET    /rules(.:format)                                                                                  static_pages#rules
 #                            tips_to_enjoy GET    /tips_to_enjoy(.:format)                                                                          static_pages#tips_to_enjoy
+#                        letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine
+#                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
 #         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
@@ -72,6 +74,13 @@
 #        edit GET|PUT     /:model_name/:id/edit(.:format)        rails_admin/main#edit
 #      delete GET|DELETE  /:model_name/:id/delete(.:format)      rails_admin/main#delete
 # show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
+#
+# Routes for LetterOpenerWeb::Engine:
+#       letters GET  /                                letter_opener_web/letters#index
+# clear_letters POST /clear(.:format)                 letter_opener_web/letters#clear
+#        letter GET  /:id(/:style)(.:format)          letter_opener_web/letters#show
+# delete_letter POST /:id/delete(.:format)            letter_opener_web/letters#destroy
+#               GET  /:id/attachments/:file(.:format) letter_opener_web/letters#attachment
 
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -82,6 +91,9 @@ Rails.application.routes.draw do
   get '/login', to: 'user_sessions#new'
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   resources :lots, only: %i[new create show]
   namespace :mypage do

@@ -1,2 +1,6 @@
 default_url_options:
   host: 'www.walking-lot.com'
+twitter:
+  callback_url: 'https://www.walking-lot.com/oauth/callback?provider=twitter'
+line:
+  callback_url: 'https://www.walking-lot.com/oauth/callback?provider=line'

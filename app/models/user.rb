@@ -23,6 +23,10 @@ class User < ApplicationRecord
   has_many :notifications, through: :user_notifications
   has_one_attached :avatar
 
+  # Anthentication
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
+
   before_create :default_avatar
 
   validates :name, presence: true
