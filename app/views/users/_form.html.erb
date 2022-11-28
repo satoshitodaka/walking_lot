@@ -1,5 +1,5 @@
 <div class='mx-auto max-w-lg mb-5'>
-  <%= form_with model: user, url: signup_path do |f| %>
+  <%= form_with model: user, url: signup_path, class:"mb-5" do |f| %>
     <%= render 'shared/error_messages', object: @user %>
     <div class="form-control w-full mb-5">
       <%= f.label :avatar, class: 'label' %>
@@ -22,8 +22,10 @@
       <%= f.password_field :password_confirmation, class: 'input input-bordered input-primary w-full' %>
     </div>
     <%= f.submit class: 'btn btn-primary btn-block' %>
-    <div class="my-5 text-right">
-        <%= link_to 'ログインはこちら', login_path, class: 'link link-info' %>
-      </div>
   <% end %>
+
+  <div class="my-5 text-right">
+    <%= link_to 'ログインはこちら', login_path, class: 'link link-info' %>
+  </div>
+
 </div>
