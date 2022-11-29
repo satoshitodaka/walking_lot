@@ -28,7 +28,6 @@ class PasswordResetsController < ApplicationController
       return
     end
 
-    debugger
     # TODO: パスワード未入力時の挙動を追加する
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
