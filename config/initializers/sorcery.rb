@@ -225,7 +225,7 @@ Rails.application.config.sorcery.configure do |config|
 
   config.line.key = Rails.application.credentials.dig(:line, :channel_id)
   config.line.secret = Rails.application.credentials.dig(:line, :channel_secret)
-  config.line.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=line"
+  config.line.callback_url = Settings.line.callback_url
   config.line.scope = "profile"
   config.line.bot_prompt = "normal"
   config.line.user_info_mapping = {
