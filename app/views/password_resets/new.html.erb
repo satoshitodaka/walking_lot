@@ -1,0 +1,11 @@
+<% set_meta_tags title: 'パスワードリセット' %>
+<div class="container mx-auto px-4 py-10 max-w-lg">
+  <p class="text-2xl font-bold">パスワードリセット</p></p>
+    <%= form_with url: password_resets_path, local: true, method: :post do |form| %>
+      <div class="form-control w-full mb-5">
+        <%= form.label 'ご登録のメールアドレス', class: 'label' %>
+        <%= form.text_field :email, class: 'input input-bordered input-primary w-full' %>
+      </div>
+      <%= form.submit "パスワードをリセットする", class:"btn btn-primary btn-block" %>
+    <% end %>
+</div>
