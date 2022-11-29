@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:external]
+Rails.application.config.sorcery.submodules = [:external, :reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -225,7 +225,7 @@ Rails.application.config.sorcery.configure do |config|
 
   config.line.key = Rails.application.credentials.dig(:line, :channel_id)
   config.line.secret = Rails.application.credentials.dig(:line, :channel_secret)
-  config.line.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=line"
+  config.line.callback_url = Settings.line.callback_url
   config.line.scope = "profile"
   config.line.bot_prompt = "normal"
   config.line.user_info_mapping = {
@@ -409,7 +409,7 @@ Rails.application.config.sorcery.configure do |config|
     # Password reset mailer class.
     # Default: `nil`
     #
-    # user.reset_password_mailer =
+    user.reset_password_mailer = UserMailer
 
     # Reset password email method on your mailer class.
     # Default: `:reset_password_email`

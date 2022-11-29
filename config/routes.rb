@@ -8,6 +8,13 @@
 #                                    login GET    /login(.:format)                                                                                  user_sessions#new
 #                                          POST   /login(.:format)                                                                                  user_sessions#create
 #                                   logout DELETE /logout(.:format)                                                                                 user_sessions#destroy
+#                           oauth_callback POST   /oauth/callback(.:format)                                                                         oauths#callback
+#                                          GET    /oauth/callback(.:format)                                                                         oauths#callback
+#                         auth_at_provider GET    /oauth/:provider(.:format)                                                                        oauths#oauth
+#                          password_resets POST   /password_resets(.:format)                                                                        password_resets#create
+#                      edit_password_reset GET    /password_resets/:id/edit(.:format)                                                               password_resets#edit
+#                           password_reset PATCH  /password_resets/:id(.:format)                                                                    password_resets#update
+#                                          PUT    /password_resets/:id(.:format)                                                                    password_resets#update
 #                                     lots POST   /lots(.:format)                                                                                   lots#create
 #                                  new_lot GET    /lots/new(.:format)                                                                               lots#new
 #                                      lot GET    /lots/:id(.:format)                                                                               lots#show
@@ -94,6 +101,7 @@ Rails.application.routes.draw do
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+  resources :password_resets, only: %i[new create edit update]
 
   resources :lots, only: %i[new create show]
   namespace :mypage do
