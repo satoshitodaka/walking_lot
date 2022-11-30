@@ -229,8 +229,7 @@ Rails.application.config.sorcery.configure do |config|
   config.line.scope = "profile"
   config.line.bot_prompt = "normal"
   config.line.user_info_mapping = {
-    name: 'displayName',
-    email: 'email'
+    name: 'displayName'
   }
 
 
