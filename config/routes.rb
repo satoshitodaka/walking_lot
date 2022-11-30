@@ -12,6 +12,7 @@
 #                                          GET    /oauth/callback(.:format)                                                                         oauths#callback
 #                         auth_at_provider GET    /oauth/:provider(.:format)                                                                        oauths#oauth
 #                          password_resets POST   /password_resets(.:format)                                                                        password_resets#create
+#                       new_password_reset GET    /password_resets/new(.:format)                                                                    password_resets#new
 #                      edit_password_reset GET    /password_resets/:id/edit(.:format)                                                               password_resets#edit
 #                           password_reset PATCH  /password_resets/:id(.:format)                                                                    password_resets#update
 #                                          PUT    /password_resets/:id(.:format)                                                                    password_resets#update
@@ -98,9 +99,9 @@ Rails.application.routes.draw do
   get '/login', to: 'user_sessions#new'
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
-  post "oauth/callback" => "oauths#callback"
-  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
-  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+  post 'oauth/callback' => 'oauths#callback'
+  get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
+  get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   resources :password_resets, only: %i[new create edit update]
 
   resources :lots, only: %i[new create show]

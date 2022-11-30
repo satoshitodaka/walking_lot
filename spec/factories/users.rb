@@ -6,7 +6,7 @@
 #  access_count_to_reset_password_page :integer          default(0)
 #  admin                               :boolean          default(FALSE), not null
 #  crypted_password                    :string(255)
-#  email                               :string(255)      not null
+#  email                               :string(255)
 #  name                                :string(255)      not null
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string(255)
