@@ -1,0 +1,23 @@
+<% set_meta_tags title: 'パスワードリセット' %>
+<div class="container mx-auto px-4 py-10 max-w-lg">
+  <p class="text-2xl font-bold">パスワードリセット</p></p>
+  <%= form_for @user, url: password_reset_path(@token), html: { method: :put } do |f| %>
+    <%= render 'shared/error_messages', object: @user %>
+
+    <div class="form-control mb-5">
+      <%= f.label :email, class: 'label' %>
+      <% @user.email %>
+      <%= f.text_field :email, class: 'input input-bordered input-primary w-full', disabled: true %>
+    </div>
+    <div class="form-control mb-5">
+      <%= f.label :password, class: 'label' %>
+      <%= f.password_field :password, class: 'input input-bordered input-primary w-full' %>
+    </div>
+    <div class="form-control mb-5">
+      <%= f.label :password_confirmation, class: 'label' %>
+      <%= f.password_field :password_confirmation, class: 'input input-bordered input-primary w-full' %>
+    </div>
+
+    <%= f.submit class: 'btn btn-primary btn-block' %>
+  <% end %>
+</div>

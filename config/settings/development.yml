@@ -1,2 +1,7 @@
 default_url_options:
   host: 'localhost:3000'
+twitter:
+  callback_url: 'http://127.0.0.1:3000/oauth/callback?provider=twitter'
+line:
+  # 使用する際はngrokを使うので都度修正する
+  callback_url: 'https://73d9-240b-c010-4b4-7247-3433-e46e-58bd-3657.jp.ngrok.io/oauth/callback?provider=line'
