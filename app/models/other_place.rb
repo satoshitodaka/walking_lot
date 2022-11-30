@@ -14,4 +14,9 @@
 #  lot_id       :string(255)      not null
 #
 class OtherPlace < ApplicationRecord
+  belongs_to :lot
+  
+  validates :place_number, presence: true, uniqueness: { scope: :lot_id }
+  validates :name, presence: true
+  validates :address, presence: true
 end

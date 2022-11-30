@@ -32,6 +32,7 @@ class Lot < ApplicationRecord
   belongs_to :location_type
   has_one :lot_activity, dependent: :destroy
   has_one :activity, through: :lot_activity
+  has_many :other_places, dependent: :destroy
 
   validates :user, presence: true, if: :user_id?
   validates :start_point_latitude, presence: true
