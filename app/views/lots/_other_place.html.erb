@@ -1,0 +1,12 @@
+<div class="card card-side bg-base-100 shadow-xl mb-5">
+  <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{other_place.photo_url}&key=#{Rails.application.credentials.google_map_api_key}", id:"other_place_photo" %>
+  <div class="card-body">
+    <h2 class="card-title"><%= other_place.name %></h2>
+    <p><%= other_place.address %></p>
+    <div class="card-actions justify-end">
+      <%= link_to 'Map', "https://www.google.com/maps/search/?api=1&query=#{other_place.name}", class: 'btn btn-primary'%>
+    </div>
+  </div>
+</div>
+
+

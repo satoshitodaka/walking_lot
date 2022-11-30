@@ -75,6 +75,11 @@
 
   <hr>
   <!-- ここに寄り道スポットを載せる -->
+  <p class="text-lg font-bold label">寄り道してみよう</p>
+  <!-- OtherPlace Card -->
+  <%= render partial: 'other_place', collection: @other_places, as: :other_place %>
+
+  <hr>
 
   <!-- 再度くじを引く -->
   <p class="text-lg font-bold label">別の場所に散歩する</p></p>

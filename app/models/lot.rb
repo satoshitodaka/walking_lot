@@ -39,6 +39,7 @@ class Lot < ApplicationRecord
   validates :start_point_longitude, presence: true
 
   after_create :create_lot_activity
+  after_create :create_other_places
 
   def get_neaby_locations
     google_map_api_key = Rails.application.credentials.google_map_api_key
@@ -66,5 +67,21 @@ class Lot < ApplicationRecord
         lot_id: self.id,
         activity_id: Activity.get_same_location_type_activities(self.location_type).sample.id
       )
+    end
+
+    def create_other_places
+      2.times do
+        order_number = Random.rand(1 .. 18)
+      other_place_infomations = self.neaby_locations['results'][order_number]
+        OtherPlace.create(
+          lot_id: self.id,
+          place_number: order_number,
+          name: other_place_infomations['name'],
+          address: other_place_infomations['vicinity'],
+          latitude: other_place_infomations['geometry']['location']['lat'],
+          longitude: other_place_infomations['geometry']['location']['lng'],
+          photo_url: other_place_infomations['photos'][0]['photo_reference']
+        )
+      end
     end
 end

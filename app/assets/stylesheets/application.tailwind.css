@@ -88,3 +88,10 @@
 #target {
   width: 345px;
 }
+
+/* 寄り道スポットの写真 */
+#other_place_photo {
+  width: 100px;
+  /* height: 161px; */
+  object-fit: cover;
+}

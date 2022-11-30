@@ -28,6 +28,7 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @other_places = @lot.other_places
   end
 
   private
