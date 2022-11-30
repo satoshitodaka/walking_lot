@@ -12,6 +12,7 @@
 #                                          GET    /oauth/callback(.:format)                                                                         oauths#callback
 #                         auth_at_provider GET    /oauth/:provider(.:format)                                                                        oauths#oauth
 #                          password_resets POST   /password_resets(.:format)                                                                        password_resets#create
+#                       new_password_reset GET    /password_resets/new(.:format)                                                                    password_resets#new
 #                      edit_password_reset GET    /password_resets/:id/edit(.:format)                                                               password_resets#edit
 #                           password_reset PATCH  /password_resets/:id(.:format)                                                                    password_resets#update
 #                                          PUT    /password_resets/:id(.:format)                                                                    password_resets#update
