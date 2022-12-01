@@ -52,7 +52,7 @@ class Mypage::ActivitiesController < Mypage::BaseController
     def create_notification_about_activity_created(activity)
       notification = Notification.create!(
         title: '新規作成されたアクティビティを承認してください。',
-        url: root_path # ここは管理画面へのURLをにする
+        url: "#{Settings.admin_url}/activity/#{activity.id}/edit"
       )
       notification.notify(User.admin)
     end
