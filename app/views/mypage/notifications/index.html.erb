@@ -2,25 +2,8 @@
 <div class="container mx-auto px-4 py-10 max-w-lg">
   <p class="text-2xl font-bold">通知一覧</p>
   <% if @user_notifications.present? %>
-    <% @user_notifications.each do |user_notification| %>
-      <%= link_to notification_read_path(user_notification.notification), data: { turbo_method: :post } do %>
-        <div class="indicator w-full">
-          <!-- indicator for new notification -->
-          <% unless user_notification.read? %>
-            <span class="indicator-item badge badge-primary"></span>
-          <% end %>
-          <!-- notification card -->
-          <div class="card w-full bg-base-100 shadow-xl mb-5 mx-auto">
-            <div class="card-body">
-              <p class="card-title"><%= user_notification.notification.title %></p>
-              <div class="text-right">
-                <p><%= time_ago_in_words(user_notification.created_at) %>前</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <!--Notification Card-->
+    <%= render partial: 'notification', collection: @user_notifications, as: :user_notification %>
   <% else %>
     <p class="text-base font-bold my-5">お知らせはありません</p>
   <% end %>
