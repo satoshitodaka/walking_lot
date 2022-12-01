@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_013836) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_30_025910) do
   create_table 'active_storage_attachments', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -108,6 +108,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_013836) do
     t.string 'url', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'other_places', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.integer 'place_number', null: false
+    t.string 'lot_id', null: false
+    t.string 'name', null: false
+    t.string 'address', null: false
+    t.float 'latitude', null: false
+    t.float 'longitude', null: false
+    t.string 'photo_url'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['lot_id', 'place_number'], name: 'index_other_places_on_lot_id_and_place_number', unique: true
   end
 
   create_table 'user_notifications', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|

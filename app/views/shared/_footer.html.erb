@@ -18,39 +18,18 @@
 <div class="lg:hidden">
   <div class="btm-nav">
     <%= link_to root_path do %>
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-      <rect x="10" y="12" width="4" height="4"></rect>
-    </svg>
+      <%= render 'shared/svg_icons/home' %>
     <% end %>
     <%= link_to new_lot_path do %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shoe" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M4 6h5.426a1 1 0 0 1 .863 .496l1.064 1.823a3 3 0 0 0 1.896 1.407l4.677 1.114a4 4 0 0 1 3.074 3.89v2.27a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1z"></path>
-        <path d="M14 13l1 -2"></path>
-        <path d="M8 18v-1a4 4 0 0 0 -4 -4h-1"></path>
-        <path d="M10 12l1.5 -3"></path>
-      </svg>
+      <%= render 'shared/svg_icons/foot' %>
     <% end %>
     <%= link_to about_path do %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <circle cx="12" cy="12" r="9"></circle>
-        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        <polyline points="11 12 12 12 12 16 13 16"></polyline>
-      </svg>
+      <%= render 'shared/svg_icons/info' %>
     <% end %>
     <!-- link for mypage -->
     <% if logged_in? %>
       <%= link_to mypage_account_path do %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <circle cx="12" cy="12" r="9"></circle>
-        <circle cx="12" cy="10" r="3"></circle>
-        <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-      </svg>
+      <%= render 'shared/svg_icons/user' %>
       <% end %>
     <% end %>
   </div>
