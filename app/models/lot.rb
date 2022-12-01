@@ -51,8 +51,15 @@ class Lot < ApplicationRecord
   end
 
   def set_destination
-    order_number = Random.rand(0 .. self.neaby_locations['results'].size - 1)
-    destination_infomations = self.neaby_locations['results'][order_number]
+    # 行先を含む場所をランダムで3箇所選択し、番号を配列@place_order_numbersに格納する
+    @place_order_numbers = Array.new
+    loop do
+      @place_order_numbers << Random.rand(0 .. self.neaby_locations['results'].size - 1)
+      @place_order_numbers.uniq!
+      break if @place_order_numbers.count == 3 || @place_order_numbers.count == self.neaby_locations['results'].size
+    end
+    
+    destination_infomations = self.neaby_locations['results'][@place_order_numbers[0]]
 
     self.destination_name = destination_infomations['name']
     self.destination_address = destination_infomations['vicinity']
@@ -75,12 +82,14 @@ class Lot < ApplicationRecord
     end
 
     def create_other_places
-      2.times do
-        order_number = Random.rand(0 .. self.neaby_locations['results'].size - 1)
-        other_place_infomations = self.neaby_locations['results'][order_number]
+      # 寄り道スポットの数を取得
+      other_place_count = @place_order_numbers.size - 1
+      return if other_place_count == 0
+      [*1 .. other_place_count].each do |i|
+        other_place_infomations = self.neaby_locations['results'][@place_order_numbers[i]]
         other_place = OtherPlace.create(
           lot_id: self.id,
-          place_number: order_number,
+          place_number: @place_order_numbers[i],
           name: other_place_infomations['name'],
           address: other_place_infomations['vicinity'],
           latitude: other_place_infomations['geometry']['location']['lat'],
