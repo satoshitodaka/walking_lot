@@ -58,7 +58,7 @@ class Lot < ApplicationRecord
       @place_order_numbers.uniq!
       break if @place_order_numbers.count == 3 || @place_order_numbers.count == self.neaby_locations['results'].size
     end
-    
+
     destination_infomations = self.neaby_locations['results'][@place_order_numbers[0]]
 
     self.destination_name = destination_infomations['name']
@@ -97,7 +97,7 @@ class Lot < ApplicationRecord
         )
 
         if other_place_infomations['photos']
-          other_place.update(photo_url:other_place_infomations['photos'][0]['photo_reference'])
+          other_place.update(photo_url: other_place_infomations['photos'][0]['photo_reference'])
         elsif other_place_infomations['photos'].nil?
           other_place.update(photo_url: 'no_image')
         end
