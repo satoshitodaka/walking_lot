@@ -58,6 +58,13 @@
     <% end %>
   </div>
 
+  <hr>
+  
+  <!-- ここに寄り道スポットを載せる -->
+  <p class="text-lg font-bold label">寄り道してみよう</p>
+  <!-- OtherPlace Card -->
+  <%= render partial: 'other_place', collection: @other_places, as: :other_place %>
+
   <!-- SNSシェアボタン -->
   <p class="text-lg font-bold label">SNSでシェアする</p>
   <div class="flex flex-row mb-3 mx-1">
@@ -76,12 +83,6 @@
       <% end %>
     </div>
   </div>
-
-  <hr>
-  <!-- ここに寄り道スポットを載せる -->
-  <p class="text-lg font-bold label">寄り道してみよう</p>
-  <!-- OtherPlace Card -->
-  <%= render partial: 'other_place', collection: @other_places, as: :other_place %>
 
   <hr>
 
