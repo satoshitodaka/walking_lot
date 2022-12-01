@@ -91,7 +91,11 @@
 
 /* 寄り道スポットの写真 */
 #other_place_photo {
-  width: 100px;
-  /* height: 161px; */
+  width: 120px;
   object-fit: cover;
+}
+
+#other_place_no_image {
+  width: 120px;
+  object-fit: contain;
 }

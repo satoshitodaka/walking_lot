@@ -51,14 +51,19 @@ class Lot < ApplicationRecord
   end
 
   def set_destination
-    order_number = Random.rand(1 .. 18)
+    order_number = Random.rand(0 .. self.neaby_locations['results'].size - 1)
     destination_infomations = self.neaby_locations['results'][order_number]
 
     self.destination_name = destination_infomations['name']
     self.destination_address = destination_infomations['vicinity']
     self.destination_latitude = destination_infomations['geometry']['location']['lat']
     self.destination_longitude = destination_infomations['geometry']['location']['lng']
-    self.photo_url = destination_infomations['photos'][0]['photo_reference']
+
+    if destination_infomations['photos']
+      self.photo_url = destination_infomations['photos'][0]['photo_reference']
+    elsif destination_infomations['photos'].nil?
+      self.photo_url = 'no_image'
+    end
   end
 
   private
@@ -71,17 +76,22 @@ class Lot < ApplicationRecord
 
     def create_other_places
       2.times do
-        order_number = Random.rand(1 .. 18)
-      other_place_infomations = self.neaby_locations['results'][order_number]
-        OtherPlace.create(
+        order_number = Random.rand(0 .. self.neaby_locations['results'].size - 1)
+        other_place_infomations = self.neaby_locations['results'][order_number]
+        other_place = OtherPlace.create(
           lot_id: self.id,
           place_number: order_number,
           name: other_place_infomations['name'],
           address: other_place_infomations['vicinity'],
           latitude: other_place_infomations['geometry']['location']['lat'],
-          longitude: other_place_infomations['geometry']['location']['lng'],
-          photo_url: other_place_infomations['photos'][0]['photo_reference']
+          longitude: other_place_infomations['geometry']['location']['lng']
         )
+
+        if other_place_infomations['photos']
+          other_place.update(photo_url:other_place_infomations['photos'][0]['photo_reference'])
+        elsif other_place_infomations['photos'].nil?
+          other_place.update(photo_url: 'no_image')
+        end
       end
     end
 end
