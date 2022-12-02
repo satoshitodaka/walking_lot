@@ -5,14 +5,14 @@
   <hr class="mb-5">
 
   <div class="mb-5">
-    <%= link_to auth_at_provider_path(provider: :twitter), class: 'btn bg-twitter btn-block border-twitter' do %>
+    <%= link_to auth_at_provider_path(provider: :twitter), class: 'btn btn-block bg-twitter border-twitter hover:bg-twitter-hover hover:border-twitter-hover' do %>
     <%= render 'shared/svg_icons/twitter' %>
     <span class="normal-case" style="color: white;">Twitterでユーザー登録する</span>
     <% end %>
   </div>
 
   <div class="mb-5">
-    <%= link_to auth_at_provider_path(provider: :line), class: 'btn bg-line btn-block border-line' do %>
+    <%= link_to auth_at_provider_path(provider: :line), class: 'btn btn-block bg-line border-line hover:bg-line-hover hover:border-line-hover' do %>
     <%= render 'shared/svg_icons/line' %>
     <span class="normal-case px-2" style="color: white;">LINEでユーザー登録する</span>
     <% end %>

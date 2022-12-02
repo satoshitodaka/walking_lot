@@ -4,3 +4,4 @@ twitter:
   callback_url: 'https://www.walking-lot.com/oauth/callback?provider=twitter'
 line:
   callback_url: 'https://www.walking-lot.com/oauth/callback?provider=line'
+admin_url: 'https://www.walking-lot.com/admin'

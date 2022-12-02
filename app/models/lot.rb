@@ -77,7 +77,7 @@ class Lot < ApplicationRecord
     def create_lot_activity
       LotActivity.create(
         lot_id: self.id,
-        activity_id: Activity.get_same_location_type_activities(self.location_type).sample.id
+        activity_id: Activity.get_same_location_type_activities(self.location_type).available.sample.id
       )
     end
 
