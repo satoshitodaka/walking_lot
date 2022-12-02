@@ -70,14 +70,14 @@
   <div class="flex flex-row mb-3 mx-1">
     <div class="basis-1/2">
       <% twitter_share_url = "https://twitter.com/intent/tweet?text=#{@lot.destination_name}で%E3%80%8C#{@lot.activity.content}%E3%80%8Dにチャレンジします!!%0D%0A&hashtags=散歩くじ,散歩,ウォーキング,散歩好きな人と繋がりたい&url=https://www.walking-lot.com/lots/#{@lot.id}%0D%0A" %>
-      <%= link_to twitter_share_url, class: 'btn bg-twitter btn-block border-twitter', target: '_blank', rel: 'noopener noreferrer' do %>
+      <%= link_to twitter_share_url, class: 'btn btn-block bg-twitter border-twitter hover:bg-twitter-hover hover:border-twitter-hover', target: '_blank', rel: 'noopener noreferrer' do %>
         <%= render 'shared/svg_icons/twitter' %>
         <span class="normal-case" style="color: white;">Twitter</span>
       <% end %>
     </div>
 
     <div class="basis-1/2 mb-3 mx-1">
-      <%= link_to "https://social-plugins.line.me/lineit/share?url=https://www.walking-lot.com/lots/#{@lot.id}", class: 'btn bg-line btn-block border-line', target: '_blank', rel: 'noopener noreferrer' do %>
+      <%= link_to "https://social-plugins.line.me/lineit/share?url=https://www.walking-lot.com/lots/#{@lot.id}", class: 'btn btn-block bg-line border-line hover:bg-line-hover hover:border-line-hover', target: '_blank', rel: 'noopener noreferrer' do %>
         <%= render 'shared/svg_icons/line' %>
         <span style="color: white;" class="px-2">LINE</span>
       <% end %>
