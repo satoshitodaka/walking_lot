@@ -5,12 +5,15 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   theme: {
-    colors: {
-      'line': '#06C575',
-      'twitter': '#1DA1F2',
-      'white': '#FFFFFF'
+    extend: {
+      colors: {
+        'twitter': "rgb(29,161,242)",
+        'twitter-hover': "rgb(26,140,216)",
+        'line': "rgb(6, 197, 117)",
+        'line-hover': "rgb(5, 153, 91)"
+      },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
 }
