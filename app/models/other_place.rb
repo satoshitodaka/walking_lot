@@ -13,6 +13,10 @@
 #  updated_at   :datetime         not null
 #  lot_id       :string(255)      not null
 #
+# Indexes
+#
+#  index_other_places_on_lot_id_and_place_number  (lot_id,place_number) UNIQUE
+#
 class OtherPlace < ApplicationRecord
   belongs_to :lot
 

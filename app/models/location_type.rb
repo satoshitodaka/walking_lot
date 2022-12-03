@@ -3,7 +3,7 @@
 # Table name: location_types
 #
 #  id            :bigint           not null, primary key
-#  location_type :integer          default("anywhere"), not null
+#  location_type :integer          not null
 #  name          :string(255)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -19,12 +19,16 @@ class LocationType < ApplicationRecord
   validates :location_type, presence: true, uniqueness: true
   validates :name, presence: true
 
-  enum location_type: { anywhere: 0,
-                        cafe: 1,
-                        park: 2,
-                        tourist_attraction: 3,
-                        spa: 4,
-                        bakery: 5,
-                        book_store: 6,
+  enum location_type: { "shop" => 0,
+                        "cafe" => 1,
+                        "park" => 2,
+                        "tourist-attraction" => 3,
+                        "public-bath" => 4,
+                        "bakery" => 5,
+                        "book-store" => 6,
+                        "histrical-sites" => 7,
+                        "buddhist-temple" => 8,
+                        "shrine" => 9,
+                        
   }
 end
