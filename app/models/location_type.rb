@@ -26,7 +26,7 @@ class LocationType < ApplicationRecord
                         "public-bath" => 4,
                         "bakery" => 5,
                         "book-store" => 6,
-                        "histrical-sites" => 7,
+                        "historical-site" => 7,
                         "buddhist-temple" => 8,
                         "shrine" => 9,
                         
