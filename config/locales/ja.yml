@@ -18,7 +18,7 @@ ja:
         location_type: '行きたい場所のタイプ'
         start_point_name: '出発地'
         start_point_address: '出発地の住所'
-        start_point_latitude: '出発地の緯度'
+        start_point_latitude: '出発地' # エラーメッセージ表示のため、あえて出発地という名前にする
         start_point_longitude: '出発地の経度'
         destination_name: '目的地の名称'
         destination_address: '目的地の住所'
