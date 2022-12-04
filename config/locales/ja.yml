@@ -24,7 +24,7 @@ ja:
         destination_address: '目的地の住所'
         destination_latitude: '目的地の緯度'
         destination_longitude: '目的地の経度'
-        neaby_locations: '近隣の情報'
+        nearby_locations: '近隣の情報'
       activity:
         location_type: '場所のタイプ'
         content: 'チャレンジすること'

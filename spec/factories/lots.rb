@@ -7,7 +7,7 @@
 #  destination_latitude  :float(24)
 #  destination_longitude :float(24)
 #  destination_name      :string(255)
-#  neaby_locations       :json
+#  nearby_locations      :json
 #  photo_url             :string(255)
 #  start_point_address   :string(255)
 #  start_point_latitude  :float(24)        not null
@@ -36,7 +36,7 @@ FactoryBot.define do
     destination_address { Faker::Address.full_address }
     destination_latitude { Random.rand(35.6..35.7) }
     destination_longitude { Random.rand(139.70..139.78) }
-    neaby_locations { '' }
+    nearby_locations { '' }
     user { nil }
   end
 end

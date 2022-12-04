@@ -7,7 +7,7 @@
 #  destination_latitude  :float(24)
 #  destination_longitude :float(24)
 #  destination_name      :string(255)
-#  neaby_locations       :json
+#  nearby_locations      :json
 #  photo_url             :string(255)
 #  start_point_address   :string(255)
 #  start_point_latitude  :float(24)        not null
