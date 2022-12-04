@@ -44,21 +44,15 @@ class Lot < ApplicationRecord
   def get_neaby_locations
     google_map_api_key = Rails.application.credentials.google_map_api_key
     start_point = "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&radius=3000&keyword=#{ self.location_type.location_type }&language=ja&opennow&key=#{ google_map_api_key }"
+    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{ start_point }&keyword=#{ self.location_type.location_type }&language=ja&opennow&key=#{ google_map_api_key }"
     uri = URI.parse(url)
     response = Net::HTTP.get(uri)
     self.neaby_locations = JSON.parse(response)
   end
 
   def set_destination
-    # 行先を含む場所をランダムで3箇所選択し、番号を配列@place_order_numbersに格納する
-    @place_order_numbers = Array.new
-    loop do
-      @place_order_numbers << Random.rand(0 .. self.neaby_locations['results'].size - 1)
-      @place_order_numbers.uniq!
-      break if @place_order_numbers.count == 3 || @place_order_numbers.count == self.neaby_locations['results'].size
-    end
-
+    # 行先を含む場所をランダムで3つ選択し、番号を配列@place_order_numbersに格納する。OtherPlacesを作成する時もこの変数を使用する。
+    @place_order_numbers = set_place_order_number(self)
     destination_infomations = self.neaby_locations['results'][@place_order_numbers[0]]
 
     self.destination_name = destination_infomations['name']
@@ -74,33 +68,45 @@ class Lot < ApplicationRecord
   end
 
   private
-    def create_lot_activity
-      LotActivity.create(
+
+  def create_lot_activity
+    LotActivity.create(
+      lot_id: self.id,
+      activity_id: Activity.get_same_location_type_activities(self.location_type).available.sample.id
+    )
+  end
+
+  def create_other_places
+    # 寄り道スポットの数を取得
+    other_place_count = @place_order_numbers.size - 1
+    return if other_place_count == 0
+    [*1 .. other_place_count].each do |i|
+      other_place_infomations = self.neaby_locations['results'][@place_order_numbers[i]]
+      other_place = OtherPlace.create(
         lot_id: self.id,
-        activity_id: Activity.get_same_location_type_activities(self.location_type).available.sample.id
+        place_number: @place_order_numbers[i],
+        name: other_place_infomations['name'],
+        address: other_place_infomations['vicinity'],
+        latitude: other_place_infomations['geometry']['location']['lat'],
+        longitude: other_place_infomations['geometry']['location']['lng']
       )
-    end
 
-    def create_other_places
-      # 寄り道スポットの数を取得
-      other_place_count = @place_order_numbers.size - 1
-      return if other_place_count == 0
-      [*1 .. other_place_count].each do |i|
-        other_place_infomations = self.neaby_locations['results'][@place_order_numbers[i]]
-        other_place = OtherPlace.create(
-          lot_id: self.id,
-          place_number: @place_order_numbers[i],
-          name: other_place_infomations['name'],
-          address: other_place_infomations['vicinity'],
-          latitude: other_place_infomations['geometry']['location']['lat'],
-          longitude: other_place_infomations['geometry']['location']['lng']
-        )
-
-        if other_place_infomations['photos']
-          other_place.update(photo_url: other_place_infomations['photos'][0]['photo_reference'])
-        elsif other_place_infomations['photos'].nil?
-          other_place.update(photo_url: 'no_image')
-        end
+      if other_place_infomations['photos']
+        other_place.update(photo_url: other_place_infomations['photos'][0]['photo_reference'])
+      elsif other_place_infomations['photos'].nil?
+        other_place.update(photo_url: 'no_image')
       end
     end
+  end
+
+  def set_place_order_number(lot)
+    place_order_numbers = Array.new
+    loop do
+      place_order_numbers << Random.rand(0 .. lot.neaby_locations['results'].size - 1)
+      place_order_numbers.uniq!
+      # 配列の数が3つ（行き先の1つ+OtherPlace用の2つ）になるか、nearby_searchの結果と配列の数が同数になれば終了
+      break if place_order_numbers.count == 3 || place_order_numbers.count == lot.neaby_locations['results'].size
+    end
+    place_order_numbers
+  end
 end
