@@ -35,7 +35,7 @@ class Lot < ApplicationRecord
   has_many :other_places, dependent: :destroy
 
   validates :user, presence: true, if: :user_id?
-  validates :start_point_latitude, presence: { message: "を登録してください" } 
+  validates :start_point_latitude, presence: { message: 'を登録してください' }
   # 経度のバリデーションは意図的に外した。緯度経度にバリデーションがかかり、エラーメッセージの重複を避けるため
 
   def get_nearby_locations

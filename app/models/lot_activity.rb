@@ -22,11 +22,10 @@ class LotActivity < ApplicationRecord
   belongs_to :lot
 
   private
-
-  def self.create_with_lot(lot)
-    LotActivity.create(
-      lot_id: lot.id,
-      activity_id: Activity.get_same_location_type_activities(lot.location_type).available.sample.id
-    )
-  end
+    def self.create_with_lot(lot)
+      LotActivity.create(
+        lot_id: lot.id,
+        activity_id: Activity.get_same_location_type_activities(lot.location_type).available.sample.id
+      )
+    end
 end
