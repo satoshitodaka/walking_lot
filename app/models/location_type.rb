@@ -19,16 +19,16 @@ class LocationType < ApplicationRecord
   validates :location_type, presence: true, uniqueness: true
   validates :name, presence: true
 
-  enum location_type: { "shop" => 0,
-                        "cafe" => 1,
-                        "park" => 2,
-                        "tourist-attraction" => 3,
-                        "public-bath" => 4,
-                        "bakery" => 5,
-                        "book-store" => 6,
-                        "historical-site" => 7,
-                        "buddhist-temple" => 8,
-                        "shrine" => 9,
-                        
+  enum location_type: { 'shop' => 0,
+                        'cafe' => 1,
+                        'park' => 2,
+                        'tourist-attraction' => 3,
+                        'public-bath' => 4,
+                        'bakery' => 5,
+                        'book-store' => 6,
+                        'historical-site' => 7,
+                        'buddhist-temple' => 8,
+                        'shrine' => 9,
+
   }
 end

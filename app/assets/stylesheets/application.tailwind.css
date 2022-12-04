@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 現在地から歩くボタンのCSS */
+/* 現在地ボタンのCSS */
 .custom-map-control-button {
   background-color: #c0c0c0;
   border: 0;
