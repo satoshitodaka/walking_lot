@@ -5,9 +5,9 @@
 
 /* 現在地から歩くボタンのCSS */
 .custom-map-control-button {
-  background-color: #fff;
+  background-color: #c0c0c0;
   border: 0;
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
   padding: 0 0.5em;
@@ -35,7 +35,7 @@
 
 .pac-card {
   background-color: #fff;
-  border: 0;
+  border: 1;
   border-radius: 2px;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
@@ -70,7 +70,7 @@
   margin: 10px 0 0 10px;
   padding: 11px 11px 11px 13px;
   text-overflow: ellipsis;
-  width: 170px;
+  width: 240px;
 }
 
 #pac-input:focus {
