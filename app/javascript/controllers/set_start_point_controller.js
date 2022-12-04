@@ -21,7 +21,7 @@ export default class extends Controller {
     // 定数locationButtonを定義し、要素buttonを代入する
     const locationButton = document.createElement("button");
     // ボタンのテキスト表示を設定
-    locationButton.textContent = "現在地から歩く";
+    locationButton.textContent = "現在地";
     // ボタンのCSSクラスを定義する
     locationButton.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationButton);
