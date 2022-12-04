@@ -18,33 +18,32 @@ export default class extends Controller {
     )
   }
   renderMap(destinationlatitude, destinationlongitude, startpointlatitude, startpointlongitude) {
-    // 中間地点の緯度経度を定義する
-    const midlatitude = (destinationlatitude + startpointlatitude)/2
-    const midlongitude = (destinationlongitude + startpointlongitude)/2
-    
     // 目的地点を定義する。
-    const destinationLocation = { lat: destinationlatitude, lng: destinationlongitude }
+    const destinationPosition = new google.maps.LatLng(destinationlatitude, destinationlongitude)
     // 出発地点を定義する
-    const startpointLocation = { lat: startpointlatitude, lng: startpointlongitude }
-    // 中間地点を定義する
-    const midLocation = { lat: midlatitude, lng: midlongitude }
-    
+    const startpointPosition = new google.maps.LatLng(startpointlatitude, startpointlongitude )
+
+    const bounds = new google.maps.LatLngBounds();
+ 
     // 地図を作成し、中間地点を中心に表示する。
     const map = new google.maps.Map(this.element, {
-      zoom: 15,
-      center: midLocation
+      mapTypeControl: false,
     });
     // 出発地点の地図のマーカーを表示する
-    new google.maps.Marker({
-      position: startpointLocation,
+    const startpointMarker =  new google.maps.Marker({
+      position: startpointPosition,
       map: map,
       label: 'S'
     });
+    bounds.extend(startpointPosition);
     // 目的地の地図のマーカーを表示する
     new google.maps.Marker({
-      position: destinationLocation,
+      position: destinationPosition,
       map: map,
       label: 'G'
     });
+    bounds.extend(destinationPosition);
+    
+    map.fitBounds(bounds);
   }
 }
