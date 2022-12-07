@@ -15,7 +15,7 @@ class Admin::ActivitiesController < Admin::BaseController
     @activity = Activity.find(params[:id])
 
     if @activity.update(activitiy_params)
-      # ここで作成者にメールを送信する
+      ActivityMailer.with(activity: @activity).update_activity.deliver_later
       redirect_to admin_activity_path, success: 'アクティビティを更新しました'
     else
       render :edit
