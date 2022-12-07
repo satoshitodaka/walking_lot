@@ -162,6 +162,8 @@ GEM
       dry-initializer (~> 3.0)
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erb_lint (0.3.1)
       activesupport
       better_html (>= 2.0.1)
@@ -430,6 +432,7 @@ DEPENDENCIES
   config
   cssbundling-rails
   debug
+  enum_help
   erb_lint
   factory_bot_rails
   faker

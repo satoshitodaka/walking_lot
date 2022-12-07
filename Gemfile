@@ -58,6 +58,8 @@ gem 'ransack'
 # ページネーション
 gem 'pagy', '~> 5.10'
 
+gem 'enum_help'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
