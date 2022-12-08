@@ -10,7 +10,7 @@ RSpec.describe AdminMailer, type: :mailer do
       expect(mail.subject).to eq 'アクティビティを承認してください | 散歩くじ'
       expect(mail.to).to eq [admin_user.email]
       expect(mail.from).to eq ['support@walking-lot.com']
-      expect(mail.body).to match("#{user.name}さんがアクティビティを新規作成しました。ログインして承認・公開してください。")
+      expect(mail.body).to match("#{user.name}さんがアクティビティを作成（更新）しました。ログインして承認・公開してください。")
     end
   end
 end
