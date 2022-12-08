@@ -30,16 +30,15 @@ class Admin::ActivitiesController < Admin::BaseController
   end
 
   private
+    def activitiy_params
+      params.require(:activity).permit(:content, { location_type_ids: [] }, :approved, :released)
+    end
 
-  def activitiy_params
-    params.require(:activity).permit(:content, { location_type_ids: [] }, :approved, :released)
-  end
-
-  def create_notification_about_activity_updated(activity)
-    notification = Notification.create!(
-      title: 'アクティビティが更新されました',
-      url: mypage_activity_path(activity)
-    )
-    notification.notify(activity.user)
-  end
+    def create_notification_about_activity_updated(activity)
+      notification = Notification.create!(
+        title: 'アクティビティが更新されました',
+        url: mypage_activity_path(activity)
+      )
+      notification.notify(activity.user)
+    end
 end
