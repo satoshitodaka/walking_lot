@@ -1,7 +1,6 @@
 # == Route Map
 #
 #                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
-#                              rails_admin        /admin                                                                                            RailsAdmin::Engine
 #                                     root GET    /                                                                                                 static_pages#home
 #                                   signup GET    /signup(.:format)                                                                                 users#new
 #                                          POST   /signup(.:format)                                                                                 users#create
@@ -33,6 +32,12 @@
 #                                          PATCH  /mypage/account(.:format)                                                                         mypage/accounts#update
 #                                          PUT    /mypage/account(.:format)                                                                         mypage/accounts#update
 #                                          DELETE /mypage/account(.:format)                                                                         mypage/accounts#destroy
+#                         admin_activities GET    /admin/activities(.:format)                                                                       admin/activities#index
+#                      edit_admin_activity GET    /admin/activities/:id/edit(.:format)                                                              admin/activities#edit
+#                           admin_activity GET    /admin/activities/:id(.:format)                                                                   admin/activities#show
+#                                          PATCH  /admin/activities/:id(.:format)                                                                   admin/activities#update
+#                                          PUT    /admin/activities/:id(.:format)                                                                   admin/activities#update
+#                                          DELETE /admin/activities/:id(.:format)                                                                   admin/activities#destroy
 #                        notification_read POST   /notifications/:notification_id/read(.:format)                                                    notifications/reads#create
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
@@ -71,18 +76,6 @@
 #                update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
 #                     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
 #
-# Routes for RailsAdmin::Engine:
-#   dashboard GET         /                                      rails_admin/main#dashboard
-#       index GET|POST    /:model_name(.:format)                 rails_admin/main#index
-#         new GET|POST    /:model_name/new(.:format)             rails_admin/main#new
-#      export GET|POST    /:model_name/export(.:format)          rails_admin/main#export
-# bulk_delete POST|DELETE /:model_name/bulk_delete(.:format)     rails_admin/main#bulk_delete
-# bulk_action POST        /:model_name/bulk_action(.:format)     rails_admin/main#bulk_action
-#        show GET         /:model_name/:id(.:format)             rails_admin/main#show
-#        edit GET|PUT     /:model_name/:id/edit(.:format)        rails_admin/main#edit
-#      delete GET|DELETE  /:model_name/:id/delete(.:format)      rails_admin/main#delete
-# show_in_app GET         /:model_name/:id/show_in_app(.:format) rails_admin/main#show_in_app
-#
 # Routes for LetterOpenerWeb::Engine:
 #       letters GET  /                                letter_opener_web/letters#index
 # clear_letters POST /clear(.:format)                 letter_opener_web/letters#clear
@@ -91,7 +84,6 @@
 #               GET  /:id/attachments/:file(.:format) letter_opener_web/letters#attachment
 
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static_pages#home'
 
   get '/signup', to: 'users#new'
@@ -109,6 +101,10 @@ Rails.application.routes.draw do
     resources :notifications, only: %i[index]
     resources :activities
     resource :account, only: %i[show edit update destroy]
+  end
+
+  namespace :admin do
+    resources :activities, only: %i[index show edit update destroy]
   end
 
   resources :notifications, only: [] do

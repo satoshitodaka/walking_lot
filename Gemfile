@@ -36,10 +36,6 @@ gem 'sorcery'
 # 国際化
 gem 'rails-i18n', '~> 7.0.0'
 
-# 管理画面
-gem 'rails_admin', '~> 3.0'
-gem 'cancancan'
-
 # 定数管理
 gem 'config'
 
@@ -57,6 +53,8 @@ gem 'ransack'
 
 # ページネーション
 gem 'pagy', '~> 5.10'
+
+gem 'enum_help'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

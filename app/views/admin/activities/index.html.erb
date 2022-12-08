@@ -1,0 +1,23 @@
+<% set_meta_tags title: 'アクティビティ管理(Admin)' %>
+<div class="container mx-auto px-4 py-10 max-w-lg">
+  <p class="text-2xl font-bold mb-5">アクティビティ管理(Admin)</p>
+
+  <p class="text-lg font-bold mb-5">アクティビティ一覧</p>
+
+  <% if @activities.present? %>
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
+
+    <!--Activity Card-->
+    <%= render partial: 'activity', collection: @activities, as: :activity %>
+
+    <!--pagination-->
+    <div class="flex justify-center mb-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% else %>
+    <p>アクティビティはありません</p>
+  <% end %>
+</div>
