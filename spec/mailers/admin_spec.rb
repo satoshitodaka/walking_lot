@@ -5,7 +5,7 @@ RSpec.describe AdminMailer, type: :mailer do
     let!(:user) { create(:user) }
     let!(:admin_user) { create(:user, admin: true) }
     let!(:activity) { create(:activity, user: user) }
-    let!(:mail) { AdminMailer.with(user: user, activity: activity).new_activity }
+    let!(:mail) { AdminMailer.with(user: user, activity: activity).approval_required }
     it '管理者に承認依頼通知メールが送信される' do
       expect(mail.subject).to eq '作成されたアクティビティを承認してください'
       expect(mail.to).to eq [admin_user.email]
