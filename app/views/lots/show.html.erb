@@ -60,11 +60,12 @@
 
   <hr>
 
-  <!-- ここに寄り道スポットを載せる -->
-  <p class="text-lg font-bold label">寄り道してみよう</p>
-  <!-- OtherPlace Card -->
-  <%= render partial: 'other_place', collection: @other_places, as: :other_place %>
-
+  <% if @other_places.present? %>
+    <!-- ここに寄り道スポットを載せる -->
+    <p class="text-lg font-bold label">寄り道してみよう</p>
+    <!-- OtherPlace Card -->
+    <%= render partial: 'other_place', collection: @other_places, as: :other_place %>
+  <% end %>
   <hr>
 
   <!-- SNSシェアボタン -->
