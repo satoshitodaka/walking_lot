@@ -26,6 +26,9 @@ class LotsController < ApplicationController
         elsif @lot.nearby_locations['status'] = 'ZERO_RESULTS'
           flash.now[:info] = '近くにスポットがありませんでした。条件を変えてもう一度引いてください。'
           render :new, status: :unprocessable_entity
+        else
+          flash.now[:error] = '不具合が発生しました。管理者にお問い合わせください。'
+          redirect_to root_path
         end
       else
         render :new, status: :unprocessable_entity
