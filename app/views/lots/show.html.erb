@@ -5,7 +5,7 @@
   <!-- Card -->
   <div class="card bg-base-100 shadow-xl mb-5">
     <!--Place photo-->
-    <% if @lot.photo_url == 'no_image' %>
+    <% if @lot.photo_url.nil? %>
       <%= image_tag 'no_image' %>
     <% else %>
       <figure><%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{@lot.photo_url}&key=#{Rails.application.credentials.google_map_api_key}" %></figure>

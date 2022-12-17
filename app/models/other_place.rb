@@ -42,8 +42,6 @@ class OtherPlace < ApplicationRecord
 
         if other_place_informations['photos']
           other_place.update(photo_url: other_place_informations['photos'][0]['photo_reference'])
-        elsif other_place_informations['photos'].nil?
-          other_place.update(photo_url: 'no_image')
         end
       end
     end

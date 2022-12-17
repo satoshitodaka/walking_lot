@@ -1,5 +1,5 @@
 <div class="card card-side bg-base-100 shadow-xl mb-5">
-  <% if other_place.photo_url == 'no_image' %>
+  <% if other_place.photo_url.nil? %>
     <%= image_tag 'no_image', id: 'other_place_no_image' %>
   <% else %>
     <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{other_place.photo_url}&key=#{Rails.application.credentials.google_map_api_key}", id: 'other_place_photo' %>

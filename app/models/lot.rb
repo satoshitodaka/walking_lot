@@ -57,8 +57,6 @@ class Lot < ApplicationRecord
 
     if destination_informations['photos']
       self.photo_url = destination_informations['photos'][0]['photo_reference']
-    elsif destination_informations['photos'].nil?
-      self.photo_url = 'no_image'
     end
   end
 end
