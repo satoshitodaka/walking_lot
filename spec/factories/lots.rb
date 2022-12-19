@@ -15,6 +15,7 @@
 #  start_point_name      :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  destination_place_id  :string(255)
 #  location_type_id      :bigint           not null
 #  user_id               :bigint
 #
@@ -37,6 +38,7 @@ FactoryBot.define do
     destination_latitude { Random.rand(35.6..35.7) }
     destination_longitude { Random.rand(139.70..139.78) }
     nearby_locations { '' }
+    destination_place_id { '' }
     user { nil }
   end
 end

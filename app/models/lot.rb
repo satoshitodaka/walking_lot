@@ -15,6 +15,7 @@
 #  start_point_name      :string(255)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  destination_place_id  :string(255)
 #  location_type_id      :bigint           not null
 #  user_id               :bigint
 #
