@@ -14,7 +14,6 @@
 #
 FactoryBot.define do
   factory :other_place do
-    place_number { 1 }
     lot_id { 'MyString' }
     name { 'MyString' }
     address { 'MyString' }
