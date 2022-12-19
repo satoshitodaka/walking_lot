@@ -8,7 +8,7 @@
     <h2 class="card-title"><%= other_place.name %></h2>
     <p><%= other_place.address %></p>
     <div class="card-actions justify-end">
-      <%= link_to 'Map', "https://www.google.com/maps/search/?api=1&query=#{other_place.name}", class: 'btn btn-primary' %>
+      <%= link_to '寄り道する', "https://www.google.com/maps/dir/?api=1&origin=#{@lot.start_point_latitude},#{@lot.start_point_longitude}&destination=#{@lot.destination_latitude},#{@lot.destination_longitude}&travelmode=walking&waypoints=#{other_place.address}", class: 'btn btn-primary', target: '_blank', rel: 'noopener noreferrer' %>
     </div>
   </div>
 </div>
