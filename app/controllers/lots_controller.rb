@@ -20,7 +20,7 @@ class LotsController < ApplicationController
           @lot.save
 
           LotActivity.create_with_lot(@lot) # 従属するモデルLotActivityを生成
-          OtherPlace.create_with_lot(@lot, @place_order_numbers) # 従属するモデルOtherPlaceを生成
+          OtherPlace.create_with_lot(@lot) # 従属するモデルOtherPlaceを生成
 
           redirect_to lot_path(@lot), success: 'くじを作成しました'
         elsif @lot.nearby_locations['status'] = 'ZERO_RESULTS'
