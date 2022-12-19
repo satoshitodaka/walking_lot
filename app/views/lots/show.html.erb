@@ -15,6 +15,10 @@
       </div>
     <% end %>
     <div class="card-body">
+      <!--LocationType-->
+      <div class="card-actions justify-end">
+        <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
+      </div>
       <!--Destination-->
       <div class="mx-3">
         <h2 class="card-title"><%= @lot.destination_name %></h2>
@@ -27,14 +31,16 @@
           <p class="prose text-gray-400 text-sm"><%= @lot.destination_address %></p>
         </div>
       </div>
-
       <!--Activity-->
       <h2 class="card-title mx-3">
         <%= @lot.activity.content %>
       </h2>
-
-      <div class="card-actions justify-end">
-        <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
+      <!--GoogleMapButton-->
+      <div class="card-actions justify-end flex-shrink-0 mb-5">
+        <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@lot.destination_name}&query_place_id=#{@lot.destination_place_id}", class:"btn btn-info normal-case", target: '_blank', rel: 'noopener noreferrer' do %>
+          <%= render 'shared/svg_icons/google_map' %>
+          <span class="normal-case">GoogleMapで確認する</span>
+        <% end %>
       </div>
     </div>
   </div>

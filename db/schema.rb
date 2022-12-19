@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_052129) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_150650) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -100,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_052129) do
     t.datetime "updated_at", null: false
     t.bigint "location_type_id", null: false
     t.string "photo_url"
+    t.string "destination_place_id"
     t.index ["user_id"], name: "index_lots_on_user_id"
   end
 
