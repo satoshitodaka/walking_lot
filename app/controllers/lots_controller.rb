@@ -42,6 +42,7 @@ class LotsController < ApplicationController
   end
 
   private
+
     def lot_params
       params.require(:lot).permit(
         :location_type_id,

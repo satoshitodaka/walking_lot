@@ -28,6 +28,7 @@ class Mypage::AccountsController < Mypage::BaseController
   end
 
   private
+
     def profile_params
       params.require(:user).permit(:avatar, :name, :email, :password, :password_confirmation).merge(admin: false)
     end
