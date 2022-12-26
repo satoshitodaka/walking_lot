@@ -3,53 +3,53 @@
   <p class="text-2xl font-bold mb-5">散歩くじの結果</p>
 
   <!-- Card -->
-  <div class="card bg-base-100 shadow-xl mb-5">
-    <!--Place photo-->
-    <% if @lot.photo_url.nil? %>
-      <%= image_tag 'no_image' %>
-    <% else %>
-      <figure><%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{@lot.photo_url}&key=#{Rails.application.credentials.google_map_api_key}" %></figure>
-      <div class="flex justify-end items-center p-1">
-        <span class="text-xs font-light">Powered by</span>
-        <%= image_tag 'google_on_white.png', size: '60x60' %>
-      </div>
-    <% end %>
-    <div class="card-body">
-      <!--LocationType-->
-      <div class="card-actions justify-end">
-        <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
-      </div>
-      <!--Destination-->
-      <div class="mx-3 grid grid-cols-3">
-        <div class="col-span-2">
-          <h2 class="card-title"><%= @lot.destination_name %></h2>
-          <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <circle cx="12" cy="11" r="3"></circle>
-              <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
-            </svg>
-            <p class="prose text-gray-400 text-sm"><%= @lot.destination_address %></p>
+  <p class="text-lg font-bold label">散歩の行き先</p>
+  <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@lot.destination_name}&query_place_id=#{@lot.destination_place_id}", target: '_blank', rel: 'noopener noreferrer' do %>
+    <div class="card bg-base-200 shadow-xl mb-5">
+      <!--Place photo-->
+      <% if @lot.photo_url.nil? %>
+        <%= image_tag 'no_image' %>
+      <% else %>
+        <figure><%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=#{@lot.photo_url}&key=#{Rails.application.credentials.google_map_api_key}" %></figure>
+        <div class="flex justify-end items-center p-1">
+          <span class="text-xs font-light">Powered by</span>
+          <%= image_tag 'google_on_white.png', size: '60x60' %>
+        </div>
+      <% end %>
+      <div class="card-body">
+        <!--Destination-->
+        <div class="mx-3 grid grid-cols-3">
+          <div class="col-span-2">
+            <h2 class="card-title"><%= @lot.destination_name %></h2>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <circle cx="12" cy="11" r="3"></circle>
+                <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
+              </svg>
+              <p class="prose text-gray-400 text-sm"><%= @lot.destination_address %></p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="mt-3">約<%= @lot.time_required %></p>
           </div>
         </div>
-        <div class="text-right">
-          <p class="mt-3">約<%= @lot.time_required %></p>
+        <!--LocationType-->
+        <div class="card-actions justify-end">
+          <div class="badge badge-lg badge-outline"><%= @lot.location_type.name %></div>
         </div>
       </div>
-      <!--Activity-->
-      <h2 class="card-title mx-3">
-        <%= @lot.activity.content %>
-      </h2>
-      <!--GoogleMapButton-->
-      <div class="card-actions justify-end flex-shrink-0 mb-5">
-        <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@lot.destination_name}&query_place_id=#{@lot.destination_place_id}", class:"btn btn-info normal-case", target: '_blank', rel: 'noopener noreferrer' do %>
-          <%= render 'shared/svg_icons/google_map' %>
-          <span class="normal-case">GoogleMapで確認する</span>
-        <% end %>
-      </div>
+    </div>
+  <% end %>
+
+  <!--Activity-->
+  <p class="text-lg font-bold label">アクティビティにチャレンジしよう!!</p>
+  <div class="card w-96 bg-base-200 shadow-xl mb-5">
+    <div class="card-body">
+      <h2 class="card-title"><%= @lot.activity.content %></h2>
     </div>
   </div>
-
+  
   <!-- GoogleMap -->
   <div
     data-controller="show-map"
