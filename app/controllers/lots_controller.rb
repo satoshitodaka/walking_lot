@@ -17,6 +17,8 @@ class LotsController < ApplicationController
         if @lot.nearby_locations['status'] == 'OK'
           @place_order_numbers = set_place_order_number(@lot)
           @lot.set_destination(@place_order_numbers)
+          @lot.get_directions_api_response
+          @lot.set_time_required
           @lot.save
 
           LotActivity.create_with_lot(@lot) # 従属するモデルLotActivityを生成

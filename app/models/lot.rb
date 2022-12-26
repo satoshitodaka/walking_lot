@@ -14,11 +14,12 @@
 #  start_point_latitude     :float(24)        not null
 #  start_point_longitude    :float(24)        not null
 #  start_point_name         :string(255)
-#  time_required            :integer
+#  time_required            :string(255)
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  destination_place_id     :string(255)
 #  location_type_id         :bigint           not null
+#  start_point_place_id     :string(255)
 #  user_id                  :bigint
 #
 # Indexes
@@ -47,7 +48,6 @@ class Lot < ApplicationRecord
     uri = URI.parse(url)
     response = Net::HTTP.get(uri)
     self.nearby_locations = JSON.parse(response)
-    debugger
   end
 
   def set_destination(place_order_numbers)
@@ -63,4 +63,22 @@ class Lot < ApplicationRecord
       self.photo_url = destination_informations['photos'][0]['photo_reference']
     end
   end
+
+  def get_directions_api_response
+
+    google_map_api_key = Rails.application.credentials.google_map_api_key
+    start_point = self.start_point_place_id ? "place_id:#{start_point_place_id}" : "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
+    destination = self.destination_place_id ? "place_id:#{destination_place_id}" : "#{self.destination_latitude}" + ',' + "#{self.destination__longitude}"
+    url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{ start_point }&destination=#{ destination }&mode=walking&language=ja&key=#{ google_map_api_key }"
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    self.direnctions_api_response = JSON.parse(response)
+
+  end
+
+  def set_time_required
+    self.time_required = direnctions_api_response['routes'][0]['legs'][0]['duration']['text']
+  end
+
+  
 end
