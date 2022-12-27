@@ -22,30 +22,30 @@
       </div>
     </div>
     <!-- about app for desktop -->
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">散歩くじについて</label>
-          <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-            <li><%= link_to '使い方', about_path %></li>
-            <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
-            <li><%= link_to '利用規約', rules_path %></li>
-            <li><%= link_to 'プライバシーポリシー', privacy_path %></li>
-            <li><%= link_to 'お問い合わせ', 'https://forms.gle/JKh3j2EQ2hK8dioh8' %></li>
-          </ul>
-        </div>
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">散歩くじについて</label>
+      <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+        <li><%= link_to '使い方', about_path %></li>
+        <li><%= link_to '散歩のススメ', tips_to_enjoy_path %></li>
+        <li><%= link_to '利用規約', rules_path %></li>
+        <li><%= link_to 'プライバシーポリシー', privacy_path %></li>
+        <li><%= link_to 'お問い合わせ', 'https://forms.gle/JKh3j2EQ2hK8dioh8' %></li>
+      </ul>
+    </div>
 
-      <!-- for unless login User -->
-      <% unless logged_in? %>
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">
-            <%= render 'shared/svg_icons/user' %>
-            <span>ユーザー</span>
-          </label>
-          <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-            <li><%= link_to 'ユーザー登録', signup_path %></li>
-            <li><%= link_to 'ログイン', login_path %></li>
-          </ul>
-        </div>
-      <% end %>
+    <!-- for unless login User -->
+    <% unless logged_in? %>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost rounded-btn hidden lg:flex">
+          <%= render 'shared/svg_icons/user' %>
+          <span>ユーザー</span>
+        </label>
+        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+          <li><%= link_to 'ユーザー登録', signup_path %></li>
+          <li><%= link_to 'ログイン', login_path %></li>
+        </ul>
+      </div>
+    <% end %>
     <!-- Notification Icon -->
     <% if logged_in? %>
       <%= render 'shared/notifications', user_notifications: current_user.user_notifications.where(read: false).includes(:notification).limit(3) %>

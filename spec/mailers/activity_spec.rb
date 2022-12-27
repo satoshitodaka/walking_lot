@@ -7,7 +7,6 @@ RSpec.describe ActivityMailer, type: :mailer do
     let!(:mail) { ActivityMailer.with(activity: activity).update_activity }
 
     it 'メールが正しく作成されること' do
-      # debugger
       expect(mail.to).to eq [user.email]
       expect(mail.from).to eq ['support@walking-lot.com']
       expect(mail.subject).to eq 'あなたのアクティビティが更新されました | 散歩くじ'

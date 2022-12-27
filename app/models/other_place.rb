@@ -48,7 +48,6 @@ class OtherPlace < ApplicationRecord
 
       [*0 .. other_place_order_numbers.count - 1].each do |i|
         other_place_informations = other_place_options['results'][other_place_order_numbers[i]]
-        debugger
         other_place = OtherPlace.create(
           lot_id: lot.id,
           name: other_place_informations['name'],
