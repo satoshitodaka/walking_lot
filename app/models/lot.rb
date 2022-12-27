@@ -65,7 +65,6 @@ class Lot < ApplicationRecord
   end
 
   def get_directions_api_response
-
     google_map_api_key = Rails.application.credentials.google_map_api_key
     start_point = self.start_point_place_id ? "place_id:#{start_point_place_id}" : "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
     destination = self.destination_place_id ? "place_id:#{destination_place_id}" : "#{self.destination_latitude}" + ',' + "#{self.destination__longitude}"
@@ -73,12 +72,9 @@ class Lot < ApplicationRecord
     uri = URI.parse(url)
     response = Net::HTTP.get(uri)
     self.direnctions_api_response = JSON.parse(response)
-
   end
 
   def set_time_required
     self.time_required = direnctions_api_response['routes'][0]['legs'][0]['duration']['text']
   end
-
-  
 end
