@@ -30,6 +30,7 @@ class Admin::ActivitiesController < Admin::BaseController
   end
 
   private
+
     def activitiy_params
       params.require(:activity).permit(:content, { location_type_ids: [] }, :approved, :released)
     end
