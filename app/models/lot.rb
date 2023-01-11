@@ -2,21 +2,25 @@
 #
 # Table name: lots
 #
-#  id                    :string(36)       not null, primary key
-#  destination_address   :string(255)
-#  destination_latitude  :float(24)
-#  destination_longitude :float(24)
-#  destination_name      :string(255)
-#  nearby_locations      :json
-#  photo_url             :string(255)
-#  start_point_address   :string(255)
-#  start_point_latitude  :float(24)        not null
-#  start_point_longitude :float(24)        not null
-#  start_point_name      :string(255)
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  location_type_id      :bigint           not null
-#  user_id               :bigint
+#  id                       :string(36)       not null, primary key
+#  destination_address      :string(255)
+#  destination_latitude     :float(24)
+#  destination_longitude    :float(24)
+#  destination_name         :string(255)
+#  direnctions_api_response :json
+#  nearby_locations         :json
+#  photo_url                :string(255)
+#  start_point_address      :string(255)
+#  start_point_latitude     :float(24)        not null
+#  start_point_longitude    :float(24)        not null
+#  start_point_name         :string(255)
+#  time_required            :string(255)
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  destination_place_id     :string(255)
+#  location_type_id         :bigint           not null
+#  start_point_place_id     :string(255)
+#  user_id                  :bigint
 #
 # Indexes
 #
@@ -34,7 +38,6 @@ class Lot < ApplicationRecord
   has_one :activity, through: :lot_activity
   has_many :other_places, dependent: :destroy
 
-  validates :user, presence: true, if: :user_id?
   validates :start_point_latitude, presence: { message: 'を登録してください' }
   # 経度のバリデーションは意図的に外した。緯度経度にバリデーションがかかり、エラーメッセージの重複を避けるため
 
@@ -54,11 +57,24 @@ class Lot < ApplicationRecord
     self.destination_address = destination_informations['vicinity']
     self.destination_latitude = destination_informations['geometry']['location']['lat']
     self.destination_longitude = destination_informations['geometry']['location']['lng']
+    self.destination_place_id = destination_informations['place_id']
 
     if destination_informations['photos']
       self.photo_url = destination_informations['photos'][0]['photo_reference']
-    elsif destination_informations['photos'].nil?
-      self.photo_url = 'no_image'
     end
+  end
+
+  def get_directions_api_response
+    google_map_api_key = Rails.application.credentials.google_map_api_key
+    start_point = self.start_point_place_id ? "place_id:#{start_point_place_id}" : "#{self.start_point_latitude}" + ',' + "#{self.start_point_longitude}"
+    destination = self.destination_place_id ? "place_id:#{destination_place_id}" : "#{self.destination_latitude}" + ',' + "#{self.destination__longitude}"
+    url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{ start_point }&destination=#{ destination }&mode=walking&language=ja&key=#{ google_map_api_key }"
+    uri = URI.parse(url)
+    response = Net::HTTP.get(uri)
+    self.direnctions_api_response = JSON.parse(response)
+  end
+
+  def set_time_required
+    self.time_required = direnctions_api_response['routes'][0]['legs'][0]['duration']['text']
   end
 end

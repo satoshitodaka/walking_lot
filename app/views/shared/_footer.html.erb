@@ -19,17 +19,21 @@
   <div class="btm-nav">
     <%= link_to root_path do %>
       <%= render 'shared/svg_icons/home' %>
+      <p class='text-xs font-thin'>ホーム</p>
     <% end %>
     <%= link_to new_lot_path do %>
       <%= render 'shared/svg_icons/foot' %>
+      <p class='text-xs font-thin'>くじ引き</p>
     <% end %>
     <%= link_to about_path do %>
       <%= render 'shared/svg_icons/info' %>
+      <p class='text-xs font-thin'>使い方</p>
     <% end %>
     <!-- link for mypage -->
     <% if logged_in? %>
       <%= link_to mypage_account_path do %>
-      <%= render 'shared/svg_icons/user' %>
+        <%= render 'shared/svg_icons/user' %>
+        <p class='text-xs font-thin'>ユーザー</p>
       <% end %>
     <% end %>
   </div>

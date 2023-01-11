@@ -44,6 +44,7 @@ class User < ApplicationRecord
   scope :admin, -> { where(admin: true) }
 
   private
+
     def default_avatar
       return if avatar.attached?
       avatar.attach(io: File.open(Rails.root.join('app/assets/images/default_avatar.png')), filename: 'default_avatar.png')
