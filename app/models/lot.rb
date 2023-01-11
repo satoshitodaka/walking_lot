@@ -57,7 +57,7 @@ class Lot < ApplicationRecord
     self.destination_address = destination_informations['vicinity']
     self.destination_latitude = destination_informations['geometry']['location']['lat']
     self.destination_longitude = destination_informations['geometry']['location']['lng']
-    self.destination_place_id = destination_informations['place_id']
+    # self.destination_place_id = destination_informations['place_id']
 
     if destination_informations['photos']
       self.photo_url = destination_informations['photos'][0]['photo_reference']
